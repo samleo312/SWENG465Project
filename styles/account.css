@@ -1,20 +1,86 @@
-.content-pane{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    align-items: center;
-    justify-content: space-between;
+
+/* Styles the body to take up the whole viewheight and viewwidth */
+body{
+    margin: 0;
     height: 100vh;
+    width: 100vw;
 }
 
+.content-pane{
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    flex-basis: 100%;
+}
+
+/* Header just holds the title and tabs */
 .header{
     background-color: rgb(77, 124, 77);
-    height: 20%;
-    font-size: 28px;
-    font-weight: 700;
-    padding: 6px;
+    height: 10%;
+    width: 100%;
+    padding: 12px;
+    flex: 1;
 }
 
-.fuck-css{
-    background-color: red;
+/* Account details paragraph field */
+.acc-det{
+    flex: 1;
+    font-size: 28px; /* Initial font size */
+    white-space: nowrap; /* Prevent text from wrapping */
+    overflow: hidden; /* Hide text that overflows the container */
+    text-overflow: ellipsis; /* Add an ellipsis (...) when text overflows */
+    transition: font-size 0.2s;
+    font-weight: 700;
+    height: 100%;
+    align-self: center;
+}
+
+/* Change the screen whenever  */
+@media screen and (max-width: 768px) {
+    .acc-det {
+      font-size: 20px; /* Decrease font size for smaller screens */
+    }
+}
+
+/* profile container for the profile picture and the email, username, and password */
+.prof-container{
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+}
+
+/* Profile picture styling */
+.prof-img{
+    width: 100px;
+    height: 100px;
+    align-content: center;
+    background-color: rgba(123, 123, 123, 0.2);
+    padding: 4px;
+}
+
+/* Holds the user info for the email, username, and password */
+.user-info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height:fit-content;
+    margin-top: 10px;
+}
+
+/* Style of the info  */
+.user{
+    font-size: 20px;
+    background-color: lightgray;
+    border: 2px black solid;
+    margin: 1px;
+    padding: 6px;
+    width: 100%;
+}
+
+.journey-container{
+    padding: 16px;
+    margin: 0px 0px 10px 0px;
+    background-color: lightgray;
+    border-radius: 20px;
 }

@@ -11,7 +11,7 @@ app.use('/', indexRoute);
 app.use('/home', homeRoute);
 app.use('/account', accountRoute);
 app.use(express.static('./images'));
-app.use(express.static('./styles'));
+app.use(express.static('styles'));
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`)
