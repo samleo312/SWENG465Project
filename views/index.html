@@ -5,6 +5,27 @@
         </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
+        <style>
+            body {
+                background: url('forest.jpg') no-repeat center center fixed; 
+                -webkit-background-size: cover;
+                -moz-background-size: cover;
+                -o-background-size: cover;
+                background-size: cover;
+            }
+            .translucent-form-overlay {
+                position: relative;
+                background-color: rgba(0,0,0,0.6);
+                width: 100%;
+                height: 100vh;
+                padding-top: 30px;
+            }
+            .card {
+                margin: auto;
+
+            }
+        </style>
+
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
                 const form = document.getElementById('loginForm')
@@ -25,29 +46,35 @@
     </head>
 
     <body>
-        <div class="d-flex flex-row justify-content-center" style="height: 100vh; background-color: rgb(15, 46, 36);">
-            <div class="d-flex flex-column justify-content-center">
-                <form class="form-signin" id="loginForm">
-                    <h1 class="h3 mb-3 font-weight-normal" style="color: white;">Please sign in</h1>
-
-                    <div class="mt-3">
-                        <label for="inputUser" class="sr-only">Username</label>
-                        <input type="text" id="inputUser" name='inputUser' class="form-control" placeholder="Username" required="" autofocus="">
+        <div class="d-flex flex-column translucent-form-overlay justify-content-center">
+            <div class="card w-50 justify-content-center">
+                <div class="card-body">
+                    <div class="d-flex flex-column justify-content-center">
+                        <h1 style="text-align: center;">Welcome to Trailblazer!</h1>
+                        <form>
+                            <!-- Email input -->
+                            <div class="form-outline mb-4">
+                              <input type="email" id="emailInput" class="form-control" placeholder="Email"/>
+                            </div>
+                          
+                            <!-- Password input -->
+                            <div class="form-outline mb-4">
+                              <input type="password" id="passwordInput" class="form-control" placeholder="Password" />
+                            </div>
+                          
+                          
+                            <!-- Submit button -->
+                            <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                          
+                            <!-- Register buttons -->
+                            <div class="text-center">
+                              <p>Not a member? <a href="#!">Register</a></p>
+                            </div>
+                        </form>
                     </div>
-                    
-                    <div class="mt-1">
-                        <label for="inputPassword" class="sr-only">Password</label>
-                        <input type="password" id="inputPassword" name='inputPassword'class="form-control" placeholder="Password" required="">
-                    </div>
-                    
-                    <button class="btn btn-lg btn-primary btn-block mt-3" type="submit">Sign in</button>
-                </form>
+                </div>
             </div>
         </div>
 
-        
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     </body>
 </html>
