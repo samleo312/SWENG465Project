@@ -16,18 +16,32 @@
 
     <body>
         <div class="d-flex flex-column" style="height: 100vh;">
-            <div class="d-flex flex-row" style="flex-basis: 60px; align-items: center; background-color: rgb(77, 124, 77);">
-                <img src="boot.png" width="60" height="60" class="d-inline-block align-top" alt="" style="margin-right: 5px; margin-left: 5px;">
-                <h2>Trailblazer</h2>
-            </div>
+            <nav class="navbar navbar-expand-lg" style="background-color: rgb(169, 219, 161); justify-content: space-between;">
+                <div class="d-flex flex-row">
+                    <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link" href="#">Feed</a>
+                            <a class="nav-link" href="#">About</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex flex-column">
+                    <img src="pfp.png" width="40" height="40" alt="">
+                    <p style="text-align: center; margin-bottom: 0;">User</p>
+                </div>
+
+            </nav>
+            
 
             <div class="d-flex flex-row" style="flex-grow: 1;">
-                
                 <div class="d-flex flex-column" style="flex-grow: 1; flex-basis: 75%;">
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="card d-flex " style="flex-grow: 1;">
-                                <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+                                <img class="card-img-top" src="example1.jpg" alt="Card image cap" style="height: 500px">
                                 <div class="card-body">
                                   <h5 class="card-title">Card title</h5>
                                   <p class="card-text">This will be one journal entry, containing a title as well as an image that the user uploaded when it was created</p>
@@ -39,7 +53,7 @@
 
                         <li class="list-group-item">
                             <div class="card d-flex " style="flex-grow: 1;">
-                                <img class="card-img-top" src=".../100px180/" alt="Card image cap">
+                                <img class="card-img-top" src="example2.jpg" alt="Card image cap" style="height: 500px;">
                                 <div class="card-body">
                                   <h5 class="card-title">Card title</h5>
                                   <p class="card-text">This will be one journal entry, containing a title as well as an image that the user uploaded when it was created</p>
