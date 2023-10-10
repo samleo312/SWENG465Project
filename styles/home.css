@@ -1,0 +1,11 @@
+.tab-margins{
+    margin-left: 20px;
+}
+
+.profile-icon{
+    background-color: lightgray;
+    padding: 16px;
+    align-items: center;
+    height: 60px;
+    width: 60px;
+}
