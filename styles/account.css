@@ -20,6 +20,8 @@ body{
     width: 100%;
     padding: 12px;
     flex: 1;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* Account details paragraph field */
@@ -40,6 +42,13 @@ body{
     .acc-det {
       font-size: 20px; /* Decrease font size for smaller screens */
     }
+}
+
+/* tabs styling */
+.tabs{
+    flex: 1;
+    justify-content: flex-end;
+    text-decoration: none;
 }
 
 /* profile container for the profile picture and the email, username, and password */

@@ -9,3 +9,8 @@
     height: 60px;
     width: 60px;
 }
+
+.account-clickable-icon{
+    color: black;
+    padding: 0;
+}

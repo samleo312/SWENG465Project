@@ -19,7 +19,7 @@ router.post('/submit-login', (req, res) => {
             console.error('Error', err);
             throw err;
         }
-        console.log(fields)
+        console.log(fields);
         // TODO: IF USERNAME AND PASSWORD IS IN DB SEND BACK SUCCESS AND LOGIN TO HOME
         res.send('Success');
 
