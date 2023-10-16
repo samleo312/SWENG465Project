@@ -1,8 +1,5 @@
-<html lang="en">
+<html>
     <head>
-        <title>
-            SWENG465PROJECT
-        </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         
         <style>
@@ -28,23 +25,7 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-                form = document.getElementById('loginForm')
-                form.addEventListener('submit', async (event) => {
-                    event.preventDefault(); 
-                    let body = {
-                        "User": document.getElementById('emailInput').value,
-                        "Password": document.getElementById('passwordInput').value
-                    }    
-                    console.log(body)     
-                    const response = await fetch('/submit-login', {
-                        method: 'POST',
-                        headers:{
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify(body),
-                    });
-                    console.log(response);
-                });
+                
             });
 
         </script>
@@ -55,7 +36,7 @@
             <div class="card w-50 justify-content-center">
                 <div class="card-body">
                     <div class="d-flex flex-column justify-content-center">
-                        <h1 style="text-align: center;">Welcome to Trailblazer!</h1>
+                        <h1 style="text-align: center;">Sign Up</h1>
                         <form id="loginForm">
                             <!-- Email input -->
                             <div class="form-outline mb-4">
@@ -70,11 +51,6 @@
                           
                             <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-                          
-                            <!-- Register buttons -->
-                            <div class="text-center">
-                              <p>Not a member? <a href="register">Register</a></p>
-                            </div>
                         </form>
                     </div>
                 </div>
