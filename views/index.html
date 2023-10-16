@@ -28,16 +28,21 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-                const form = document.getElementById('loginForm')
+                form = document.getElementById('loginForm')
                 form.addEventListener('submit', async (event) => {
-                    event.preventDefault();
-                    const formData = new FormData(form);            
-
+                    event.preventDefault(); 
+                    let body = {
+                        "User": document.getElementById('emailInput').value,
+                        "Password": document.getElementById('passwordInput').value
+                    }    
+                    console.log(body)     
                     const response = await fetch('/submit-login', {
                         method: 'POST',
-                        body: formData,
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body),
                     });
-
                     console.log(response);
                 });
             });
@@ -51,7 +56,7 @@
                 <div class="card-body">
                     <div class="d-flex flex-column justify-content-center">
                         <h1 style="text-align: center;">Welcome to Trailblazer!</h1>
-                        <form>
+                        <form id="loginForm">
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                               <input type="email" id="emailInput" class="form-control" placeholder="Email"/>
@@ -64,7 +69,7 @@
                           
                           
                             <!-- Submit button -->
-                            <button type="button" class="btn btn-primary btn-block mb-4">Sign in</button>
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
                           
                             <!-- Register buttons -->
                             <div class="text-center">
