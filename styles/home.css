@@ -1,7 +1,9 @@
+/* additional styling for the Home, Feed, and About tabs */
 .tab-margins{
     margin-left: 20px;
 }
 
+/* additional styling for the profile picture icon */
 .profile-icon{
     background-color: lightgray;
     padding: 16px;
@@ -10,7 +12,87 @@
     width: 60px;
 }
 
+/* icon is clickable to go to account page */
+/* TODO: make a dropdown menu when the user clicks it instead */
 .account-clickable-icon{
     color: black;
     padding: 0;
+}
+
+/* the container will move relative to the screen */
+.upload-btn-container{
+    position: relative;
+}
+
+/* makes a sticky button that will stay on the same part of the page throughout scrolling */
+#sticky-upload-btn{
+    position: fixed;
+    height: 2em;
+    width: 2em;
+    bottom: 20px;
+    right: 20px;  
+    padding: 0;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* styling for the popup menu */
+.popup-menu {
+    display: none;
+    position: fixed;
+    bottom: 62px;
+    right: 1%; /* Adjust as needed */
+    background-color: #fff;
+    border: 'none';
+    border-radius: 5px;
+    padding: 10px;
+    z-index: 2; /* Pops up above the button */
+
+    opacity: 0; /* Set initial opacity to 0 to make it invisible */
+
+    /* Add a transition for opacity */
+    transition: opacity 0.3s ease;
+}
+
+/* this will make the pop up menu fade in */
+.popup-menu.visible {
+    display: block;
+    opacity: 1;
+}
+
+/* additional styling for the unordered list */
+.popup-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* additional styling for the list items */
+.popup-menu li {
+    margin: 5px 0;
+}
+
+/* additional styling for the buttons in the list so they are uniform*/
+.popup-menu button{
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    border-radius: 24px;
+    font-size: 18px;
+    width: 100%;
+}
+
+/* ensures that the button does not stay focused after a click */
+#sticky-upload-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* puts the popup menu above the button */
+#sticky-upload-btn:focus + .popup-menu {
+    display: block;
 }

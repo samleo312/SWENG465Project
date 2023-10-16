@@ -12,7 +12,32 @@
         
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-                
+                // button in bottom right corner 
+                const stickyButton = document.getElementById('sticky-upload-btn');
+                const popupMenu = document.getElementById('popup-menu');
+
+                // Toggle menu visibility
+                stickyButton.addEventListener('click', () => {
+                    if (popupMenu.classList.contains('visible')) {
+                        popupMenu.classList.remove('visible');
+                    } else {
+                        popupMenu.classList.add('visible');
+                    }
+                    document.addEventListener('scroll', (event) =>{
+                        if (popupMenu.classList.contains('visible')) {
+                            popupMenu.classList.remove('visible');
+                        }
+                    });
+                });
+
+                // Close the menu when clicking outside
+                document.addEventListener('click', (event) => {
+                    if (!stickyButton.contains(event.target) && !popupMenu.contains(event.target)) {
+                        if (popupMenu.classList.contains('visible')) {
+                            popupMenu.classList.remove('visible');
+                        }
+                    }
+                });
             });
 
         </script>
@@ -72,8 +97,22 @@
                     </ul>
                 </div>
                 <!--TODO: GET AN SVG ICONS LIBRARY OF SOME KIND MAYBE. TRIED USING PNGS FOR LITTLE ICONS SUCH AS PLUS SIGN (ADD), PENCIL (EDIT), DELETE (TRASH CAN), BUT IT LOOKS LIKE HOT GARBAGE-->
-                <div class="d-flex flex-column" style="flex-grow: 1; flex-basis: 25%;">
-                    <button type="button" class="btn btn-primary btn-lg" style="margin-top: 11px;">Create New Entry</button>   
+                <div class="upload-btn-container d-flex flex-column" style="flex-grow: 1; flex-basis: 25%;">
+                    <!-- The button  -->
+                    <button type="button" id="sticky-upload-btn" class="btn btn-primary btn-lg rounded-circle">+</button>
+                    <div id="popup-menu" class="popup-menu">
+                        <ul>
+                            <li>
+                                <button type="button" class="btn btn-primary btn-lg">Upload entry</button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-primary btn-lg">Delete entry</button>
+                            </li>
+                            <li>
+                                <button type="button" class="btn btn-primary btn-lg">Edit entry</button>
+                            </li>
+                        </ul>
+                    </div>   
                 </div>
             </div>
         </div>
