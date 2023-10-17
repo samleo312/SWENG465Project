@@ -1,3 +1,10 @@
+/* styling for overall header */
+.header{
+    height: 10%;
+    max-height: 10%;
+    width: 100%;
+}
+
 /* additional styling for the Home, Feed, and About tabs */
 .tab-margins{
     margin-left: 20px;
@@ -6,10 +13,12 @@
 /* additional styling for the profile picture icon */
 .profile-icon{
     background-color: lightgray;
-    padding: 16px;
+    padding: 8px;
     align-items: center;
-    height: 60px;
-    width: 60px;
+    height: 40px;
+    width: 40px;
+    max-height: 40px;
+    max-width: 40px;
 }
 
 /* icon is clickable to go to account page */

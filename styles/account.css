@@ -1,4 +1,3 @@
-
 /* Styles the body to take up the whole viewheight and viewwidth */
 body{
     margin: 0;
@@ -6,6 +5,7 @@ body{
     width: 100vw;
 }
 
+/* adjustable content pane to hold the page contents */
 .content-pane{
     justify-content: space-between;
     align-items: center;
@@ -22,6 +22,11 @@ body{
     flex: 1;
     justify-content: flex-start;
     align-items: center;
+}
+
+/* additional styling for the Home, Feed, and About tabs */
+.tab-margins{
+    margin-left: 20px;
 }
 
 /* Account details paragraph field */
@@ -56,6 +61,17 @@ body{
 /* links do not have border when hovered over */
 .nav-tabs .nav-link{
     border: none;
+}
+
+/* additional styling for the profile picture icon */
+.profile-icon{
+    background-color: lightgray;
+    padding: 8px;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    max-height: 40px;
+    max-width: 40px;
 }
 
 /* profile container for the profile picture and the email, username, and password */

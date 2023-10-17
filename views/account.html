@@ -9,14 +9,21 @@
     </head>
     <body>
         <div class="content-pane d-flex flex-column">
-            <div class="header d-flex flex-row">
+            <nav class="header navbar navbar-expand-lg" style="background-color: rgb(169, 219, 161); justify-content: space-between;">
                 <p class="acc-det">Account Details</p>
-                <nav class="tabs navbar nav-tabs navbar-expand-lg" style="text-decoration: none;">
-                    <a class="nav-link" href="/home">Home</a>
-                    <a class="nav-link" href="#">Feed</a>
-                    <a class="nav-link" href="/about-us">About</a>
-                </nav>
-            </div>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="tabs navbar-nav tab-margins" style="text-decoration: none;">
+                        <a class="nav-link" href="/home">Home</a>
+                        <a class="nav-link" href="#">Feed</a>
+                        <a class="nav-link" href="/about-us">About</a>
+                    </div>
+                </div>
+                <div class="d-flex flex-column">
+                    <a class="nav-link account-clickable-icon" href="/account">
+                        <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
+                    </a>
+                </div>
+            </nav>
 
             <div class="prof-container d-flex flex-column">
                 <img src="pfp.png" class="prof-img rounded-circle">

@@ -1,9 +1,11 @@
+/* overall body styling */
 body{
     margin: 0;
     height: 100vh;
     width: 100vw;
 }
 
+/* adjustable content pane to hold the page contents */
 .content-pane{
     justify-content: flex-start;
     align-items: center;
@@ -12,6 +14,7 @@ body{
     min-height: 25%;
 }
 
+/* header styling */
 .header{
     background-color: rgb(169, 219, 161);
     height: 10%;
@@ -20,6 +23,12 @@ body{
     padding: 12px;
     flex: 1;
 }
+
+/* additional styling for the Home, Feed, and About tabs */
+.tab-margins{
+    margin-left: 20px;
+}
+
 
 .about-us{
     flex: 1;
@@ -54,14 +63,28 @@ body{
     border: none;
 }
 
+/* additional styling for the profile picture icon */
+.profile-icon{
+    background-color: lightgray;
+    padding: 8px;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    max-height: 40px;
+    max-width: 40px;
+}
+
+/* about information */
 .information{
     margin-top: 10%;
 }
 
+/* ul styling */
 ul{
     list-style-type: none;
 }
 
+/* list items styling */
 li{
     background-color: lightgray;
     border: 2px solid black;
@@ -69,6 +92,7 @@ li{
     margin: 4px 0px;
 }
 
+/* content of the p tags in the list items */
 .paragraph-content{
     padding: 12px;
     font-size: 12px;

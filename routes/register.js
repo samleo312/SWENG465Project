@@ -15,7 +15,7 @@ router.get('/submit-registration', (req, res) => {
     email = req.body.Email
     password = req.body.Password
 
-    let results = DBHelper.QueryDB("Login", "Users", {Email: email})  
+    // let results = DBHelper.QueryDB("Login", "Users", {Email: email})  
     // If results contains email, send response to frontend saying already exists.
 
 });
