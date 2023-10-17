@@ -1,8 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
 const uri = "mongodb+srv://admin:password1234@sweng465project.vun5rev.mongodb.net/?retryWrites=true&w=majority";
 
-
-let DBConnection;
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(uri, {
   serverApi: {
@@ -11,6 +9,17 @@ const client = new MongoClient(uri, {
     deprecationErrors: true,
   }
 });
+
+async function QueryDB(db, collection, queryFilter){
+    var cursor = client.db(db).collection(collection).find(queryFilter);
+    let returnedEntries = await cursor.toArray()
+
+    return returnedEntries
+}
+
+async function InsertDB(db, collection, document){
+    client.db(db).collection(collection).insertOne(document)
+}
 
 async function run() {
     try {
@@ -26,4 +35,7 @@ async function run() {
 }
 run().catch(console.dir);
 
-module.exports = client
+module.exports = {
+  QueryDB, 
+  InsertDB
+}

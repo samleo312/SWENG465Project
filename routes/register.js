@@ -5,10 +5,19 @@ var app = express()
 const DBHelper = require("../util/DBHelper");
 
 
+
+
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'register.html'));
-    //DBHelper.db("Login").collection("Users").insertOne({"Name": "Test2", "Password" : "Test"})
 });
 
+router.get('/submit-registration', (req, res) => {
+    email = req.body.Email
+    password = req.body.Password
+
+    let results = DBHelper.QueryDB("Login", "Users", {Email: email})  
+    // If results contains email, send response to frontend saying already exists.
+
+});
 
 module.exports = router

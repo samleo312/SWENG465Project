@@ -25,7 +25,23 @@
 
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
-                
+                form = document.getElementById('registerForm')
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault(); 
+                    let body = {
+                        "Email": document.getElementById('emailInput').value,
+                        "Password": document.getElementById('passwordInput').value
+                    }    
+                    console.log(body)     
+                    const response = await fetch('/submit-registration', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body),
+                    });
+                    console.log(response);
+                });
             });
 
         </script>
@@ -37,7 +53,7 @@
                 <div class="card-body">
                     <div class="d-flex flex-column justify-content-center">
                         <h1 style="text-align: center;">Sign Up</h1>
-                        <form id="loginForm">
+                        <form id="registerForm">
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                               <input type="email" id="emailInput" class="form-control" placeholder="Email"/>
