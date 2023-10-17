@@ -35,6 +35,7 @@ body{
     font-weight: 700;
     height: 100%;
     align-self: center;
+    max-width: fit-content;
 }
 
 /* Change the screen whenever  */
@@ -47,8 +48,14 @@ body{
 /* tabs styling */
 .tabs{
     flex: 1;
-    justify-content: flex-end;
+    justify-content: flex-start;
     text-decoration: none;
+    max-width: fit-content;
+}
+
+/* links do not have border when hovered over */
+.nav-tabs .nav-link{
+    border: none;
 }
 
 /* profile container for the profile picture and the email, username, and password */
@@ -87,6 +94,7 @@ body{
     width: 100%;
 }
 
+/* styling for the journey started on container */
 .journey-container{
     padding: 16px;
     margin: 0px 0px 10px 0px;
