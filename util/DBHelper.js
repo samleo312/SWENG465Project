@@ -10,15 +10,16 @@ const client = new MongoClient(uri, {
   }
 });
 
-async function QueryDB(db, collection, queryFilter){
-    var cursor = client.db(db).collection(collection).find(queryFilter);
+async function QueryDB(db, collection, queryFilter, callback){
+    var cursor = await client.db(db).collection(collection).find(queryFilter);
     let returnedEntries = await cursor.toArray()
 
-    return returnedEntries
+    callback(returnedEntries)
 }
 
-async function InsertDB(db, collection, document){
-    client.db(db).collection(collection).insertOne(document)
+async function InsertDB(db, collection, document, callback){
+    result = await client.db(db).collection(collection).insertOne(document)
+    callback(result);
 }
 
 async function run() {
