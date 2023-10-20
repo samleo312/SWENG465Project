@@ -35,7 +35,6 @@
                         "Email": document.getElementById('emailInput').value,
                         "Password": document.getElementById('passwordInput').value
                     }    
-                    console.log(body)     
                     const response = await fetch('/submit-login', {
                         method: 'POST',
                         headers:{
@@ -43,7 +42,7 @@
                         },
                         body: JSON.stringify(body),
                     });
-                    console.log(response);
+                    console.log(await response.text())
                 });
             });
 

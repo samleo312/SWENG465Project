@@ -28,19 +28,30 @@
                 form = document.getElementById('registerForm')
                 form.addEventListener('submit', async (event) => {
                     event.preventDefault(); 
+                    // BODY TO SEND TO BACKEND
                     let body = {
                         "Email": document.getElementById('emailInput').value,
                         "Password": document.getElementById('passwordInput').value
                     }    
                     console.log(body)     
-                    const response = await fetch('/submit-registration', {
+
+                    const response = await fetch('/register/submit-registration', {
                         method: 'POST',
                         headers:{
                             'Content-Type': 'application/json'
                         },
                         body: JSON.stringify(body),
                     });
-                    console.log(response);
+                    let reponseText = await reponse.text()
+                    // TODO: DISPLAY THAT USERNAME ALREADY EXISTS
+                    if (reponseText == 'USER_ALREADY_EXISTS'){
+                        
+                    }
+                    
+                    // TODO: DISPLAY REGISTER SUCCESS 
+                    else if(reponseText == 'DB_INSERT_SUCCESS'){
+
+                    }
                 });
             });
 

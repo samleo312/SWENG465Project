@@ -10,7 +10,20 @@ router.get('/', (req, res) => {
 });
 
 router.post('/submit-login', (req, res) => {
-    console.log(req.body)
+    email = req.body.Email
+    password = req.body.Password
+ 
+    DBHelper.QueryDB("Login", "Users", {Email: email}, (results) => {
+        // DISPLAY THAT USERNAME OR PASSWORD IS INCORRECT
+        if(results.length == 0 || results[0].Password != password){
+            res.send('LOGIN_FAILED')
+        }
+
+        
+        else{
+            res.send('LOGIN_SUCCESS')
+        }
+    });
 });
 
 
