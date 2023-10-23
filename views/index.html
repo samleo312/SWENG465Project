@@ -42,7 +42,17 @@
                         },
                         body: JSON.stringify(body),
                     });
-                    console.log(await response.text())
+                    let responseText = await response.text()
+
+                    //NAVIGATE TO HOME SCREEN WITH USERNAME AS PARAMETER
+                    if (reportText == 'LOGIN_SUCCESS'){
+
+                    }
+
+                    //DISPLAY INCORRECT USERNAME OR PASSWORD TOAST
+                    else if(responseText == 'LOGIN_FAILURE'){
+
+                    }
                 });
             });
 
