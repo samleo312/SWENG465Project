@@ -105,3 +105,37 @@
 #sticky-upload-btn:focus + .popup-menu {
     display: block;
 }
+
+/* Card grid styling */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns in a row */
+    gap: 10px; /* Adjust the gap between grid items */
+    padding: 10px;
+}
+
+/* Card styling */
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    max-width: 300px; /* Adjust as needed */
+}
+
+/* Image within the card */
+.card img {
+    width: 100%; /* Scale images to fill their parent */
+    height: auto;
+    cursor: pointer;
+}
+
+/* Hidden text within the card body */
+.card-text {
+    display: none;
+}
+
+/* Show text when the card is active */
+.card.active .card-text {
+    display: block;
+}
