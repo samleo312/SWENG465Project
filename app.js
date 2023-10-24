@@ -17,8 +17,7 @@ app.use('/home', homeRoute);
 app.use('/account', accountRoute);
 app.use('/about-us', aboutRoute);
 app.use('/register', registerRoute)
-app.use(express.static('./images'));
-app.use(express.static('styles'));
+// app.use(express.static('styles'));
 
 
 
