@@ -10,7 +10,7 @@ const indexRoute = require('./routes/index');
 const homeRoute = require('./routes/home');
 const accountRoute = require('./routes/account');
 const aboutRoute = require('./routes/about');
-const registerRoute = require('./routes/register')
+const registerRoute = require('./routes/register');
 
 app.use('/', indexRoute);
 app.use('/home', homeRoute);
