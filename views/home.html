@@ -32,6 +32,7 @@
                     } else {
                         popupMenu.classList.add('visible');
                     }
+                    // also close when scrolling
                     document.addEventListener('scroll', (event) =>{
                         if (popupMenu.classList.contains('visible')) {
                             popupMenu.classList.remove('visible');
@@ -92,6 +93,13 @@
                     viewBtn.classList.add('btn', 'btn-primary');
                     viewBtn.textContent = 'View';
 
+                    // create the view tag for that card body
+                    const editBtn = document.createElement('a');
+                    editBtn.href = '#';
+                    editBtn.classList.add('btn', 'btn-primary');
+                    editBtn.textContent = 'Edit';
+                    editBtn.style.marginLeft = '5px';
+
                     // append them all in the order they need to be
                     cardList.appendChild(listItem);
                     listItem.appendChild(card);
@@ -100,6 +108,7 @@
                     cardBody.appendChild(cardHeader);
                     cardBody.appendChild(cardText);
                     cardBody.appendChild(viewBtn);
+                    cardBody.appendChild(editBtn);
 
                     if (popupMenu.classList.contains('visible')) {
                             popupMenu.classList.remove('visible');
@@ -142,6 +151,7 @@
                                   <h5 class="card-title">Card title</h5>
                                   <p class="card-text">This will be one journal entry, containing a title as well as an image that the user uploaded when it was created</p>
                                   <a href="#" class="btn btn-primary">View</a>
+                                  <a href="#" class="btn btn-primary">Edit</a>
                                 </div>
                             </div>
                         </li>
@@ -168,12 +178,6 @@
                         <ul>
                             <li>
                                 <button id="new-upload-btn" type="button" class="btn btn-primary btn-lg">Upload entry</button>
-                            </li>
-                            <li>
-                                <button type="button" class="btn btn-primary btn-lg">Delete entry</button>
-                            </li>
-                            <li>
-                                <button type="button" class="btn btn-primary btn-lg">Edit entry</button>
                             </li>
                         </ul>
                     </div>   
