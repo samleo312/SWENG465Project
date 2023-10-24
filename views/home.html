@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<base href="/">
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -12,6 +13,13 @@
         
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
+                //Update elements with user, to pass user to all screens that can be navigated to.
+                document.getElementById('aboutUsLink').href = '/about-us/' + window.location.search
+                document.getElementById('accountIcon').href = '/account/' + window.location.search
+                
+
+
+
                 // button in bottom right corner 
                 const stickyButton = document.getElementById('sticky-upload-btn');
                 const popupMenu = document.getElementById('popup-menu');
@@ -118,19 +126,18 @@
                     <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav tab-margins">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
                             <a class="nav-link" href="#">Feed</a>
-                            <a class="nav-link" href="/about-us">About</a>
+                            <a id="aboutUsLink" class="nav-link" href="/about-us">About</a>
                         </div>
                     </div>
                 </div>
 
                 <div class="d-flex flex-column">
-                    <a class="nav-link account-clickable-icon" href="/account">
+                    <a id='accountIcon' class="nav-link account-clickable-icon" href="/account">
                         <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
                     </a>
                 </div>
-
             </nav>
             
 
