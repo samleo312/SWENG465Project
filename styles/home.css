@@ -94,12 +94,6 @@
     color: white;
 }
 
-/* size of journal images */
-.journal-img{
-    width: 200px;
-    height: auto;
-}
-
 /* the container will move relative to the screen */
 .upload-btn-container{
     position: relative;
