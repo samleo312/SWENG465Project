@@ -29,25 +29,14 @@ body{
     margin-left: 20px;
 }
 
-
-.about-us{
-    flex: 1;
-    font-size: 28px; /* Initial font size */
-    white-space: nowrap; /* Prevent text from wrapping */
-    overflow: hidden; /* Hide text that overflows the container */
-    text-overflow: ellipsis; /* Add an ellipsis (...) when text overflows */
-    transition: font-size 0.2s;
-    font-weight: 700;
-    height: 100%;
-    max-width: fit-content;
-    align-self: center;
+.tab-margins a{
+    color: black;
+    text-wrap: nowrap;
 }
 
-/* Change the screen whenever  */
-@media screen and (max-width: 768px) {
-    .about-us {
-      font-size: 20px; /* Decrease font size for smaller screens */
-    }
+.tab-margins a:hover{
+    color: white;
+    text-wrap: nowrap;
 }
 
 /* styling for the tabs bar */
@@ -74,18 +63,81 @@ body{
     max-width: 40px;
 }
 
+/* container for the account popup and clickable icon */
+.account-popup-container{
+    position: relative;
+}
+
+/* icon is clickable to go to account page */
+#account-clickable-icon{
+    color: black;
+    padding: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+/* The menu that pops up when the account profile icon is clicked */
+.account-popup {
+    background-color: #e3e3e3;
+    position: absolute;
+    top: calc(100% + .75rem);
+    right: 0; /* Adjust as needed */
+    border: 'none';
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+    z-index: 2; /* Pops up below the profile icon */
+    opacity: 0; /* Set initial opacity to 0 to make it invisible */
+    transform: translateY(-10px); /* move the popup up and down */
+    transition: opacity 150ms ease-in-out, transform 150ms ease-in-out; /* Add a transition for opacity and transform */
+}
+
+/* this will make the pop up menu fade in */
+.account-popup.open {
+    display: block;
+    opacity: 1;
+    transform: translateY(0); /* move the popup up and down */
+}
+
+/* additional styling for the unordered list */
+.account-popup ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* additional styling for the list items */
+.account-popup li {
+    margin: 5px 0;
+    width: fit-content;
+    max-width: fit-content;
+}
+
+/* style of links in popup */
+.account-popup li a {
+    color: black;
+    text-wrap: nowrap;
+    border: none;
+    text-decoration: none;
+}
+
+/* when account-popup is hovered over, it changes colors */
+.account-popup li a:hover {
+    color: white;
+}
+
 /* about information */
 .information{
     margin-top: 10%;
 }
 
 /* ul styling */
-ul{
+.information ul{
     list-style-type: none;
 }
 
 /* list items styling */
-li{
+.information li{
     background-color: lightgray;
     border: 2px solid black;
     border-radius: 20px;

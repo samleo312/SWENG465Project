@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<base href="/"/>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -14,29 +15,52 @@
             document.addEventListener('DOMContentLoaded', (event) => {
                 // button in bottom right corner 
                 const stickyButton = document.getElementById('sticky-upload-btn');
-                const popupMenu = document.getElementById('popup-menu');
+                const uploadPopup = document.getElementById('upload-popup-btn');
                 const newUploadBtn = document.getElementById('new-upload-btn');
+                const accountIconClick = document.getElementById('account-clickable-icon');
+                const accountPopup = document.getElementById('account-popup');
 
-                // Toggle menu visibility
-                stickyButton.addEventListener('click', () => {
-                    if (popupMenu.classList.contains('visible')) {
-                        popupMenu.classList.remove('visible');
+                // Toggle account menu visibility
+                accountIconClick.addEventListener('click', () => {
+                    if (accountPopup.classList.contains('open')) {
+                        accountPopup.classList.remove('open');
                     } else {
-                        popupMenu.classList.add('visible');
+                        accountPopup.classList.add('open');
                     }
                     // also close when scrolling
                     document.addEventListener('scroll', (event) =>{
-                        if (popupMenu.classList.contains('visible')) {
-                            popupMenu.classList.remove('visible');
+                        if (accountPopup.classList.contains('open')) {
+                            accountPopup.classList.remove('open');
                         }
                     });
                 });
 
-                // Close the menu when clicking outside
+                // Toggle menu visibility
+                stickyButton.addEventListener('click', () => {
+                    if (uploadPopup.classList.contains('visible')) {
+                        uploadPopup.classList.remove('visible');
+                    } else {
+                        uploadPopup.classList.add('visible');
+                    }
+                    // also close when scrolling
+                    document.addEventListener('scroll', (event) =>{
+                        if (uploadPopup.classList.contains('visible')) {
+                            uploadPopup.classList.remove('visible');
+                        }
+                    });
+                });
+
+                // Close the menus when clicking outside
                 document.addEventListener('click', (event) => {
-                    if (!stickyButton.contains(event.target) && !popupMenu.contains(event.target)) {
-                        if (popupMenu.classList.contains('visible')) {
-                            popupMenu.classList.remove('visible');
+                    if (!stickyButton.contains(event.target) && !uploadPopup.contains(event.target)) {
+                        if (uploadPopup.classList.contains('visible')) {
+                            uploadPopup.classList.remove('visible');
+                        }
+                    }
+
+                    if (!accountIconClick.contains(event.target) && !accountPopup.contains(event.target)) {
+                        if (accountPopup.classList.contains('open')) {
+                            accountPopup.classList.remove('open');
                         }
                     }
                 });
@@ -102,8 +126,9 @@
                     cardBody.appendChild(viewBtn);
                     cardBody.appendChild(editBtn);
 
-                    if (popupMenu.classList.contains('visible')) {
-                            popupMenu.classList.remove('visible');
+                    // gets rid of the pop up when this upload button is clicked
+                    if (uploadPopup.classList.contains('visible')) {
+                            uploadPopup.classList.remove('visible');
                     }
                 });
             });
@@ -118,17 +143,32 @@
                     <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav tab-margins">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
                             <a class="nav-link" href="#">Feed</a>
                             <a class="nav-link" href="/about-us">About</a>
                         </div>
                     </div>
                 </div>
 
-                <div class="d-flex flex-column">
-                    <a class="nav-link account-clickable-icon" href="/account">
+                <div class="account-popup-container">
+                    <!-- Icon essentially acts as a clickable icon with the javascript DOM manipulation -->
+                    <div id="account-clickable-icon" class="account-clickable-icon">
                         <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
-                    </a>
+                    </div>
+                    <div id="account-popup" class="account-popup">
+                        <ul>
+                            <li>
+                                <a id="go-to-account"  class="" href="/account">Account</a>
+                            </li>
+                            <li>
+                                <!-- Settings page not existing yet -->
+                                <a id="go-to-settings" class="" href="/home">Settings</a>
+                            </li>
+                            <li>
+                                <a id="sign-out" class="" href="/">Sign Out</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </nav>
@@ -139,7 +179,7 @@
                     <ul id="card-list" class="list-group">
                         <li class="list-group-item">
                             <div class="card d-flex " style="flex-grow: 1;">
-                                <img class="card-img-top" src="example1.jpg" alt="Card image cap" style="height: 500px">
+                                <img class="journal-img card-img-top" src="example1.jpg" alt="Card image cap">
                                 <div class="card-body">
                                   <h5 class="card-title">Card title</h5>
                                   <p class="card-text">This will be one journal entry, containing a title as well as an image that the user uploaded when it was created</p>
@@ -148,11 +188,11 @@
                                 </div>
                             </div>
                         </li>
-                        <!--MAKE EXISTING ENTRIES A GRID STYLE-->
-                        <!--MAKE CREATE NEW ENTRY BUTTON FLOATING ABOVE GRID IN LOWER RIGHT, LIKE MOBILE APP-->
+                        <!--TODO: MAKE EXISTING ENTRIES A GRID STYLE-->
+                        <!--TODO: MAKE CREATE NEW ENTRY BUTTON FLOATING ABOVE GRID IN LOWER RIGHT, LIKE MOBILE APP-->
                         <li class="list-group-item">
                             <div class="card d-flex " style="flex-grow: 1;">
-                                <img class="card-img-top" src="example2.jpg" alt="Card image cap" style="height: 500px;">
+                                <img class="journal-img card-img-top" src="example2.jpg" alt="Card image cap">
                                 <div class="card-body">
                                   <h5 class="card-title">Card title</h5>
                                   <p class="card-text">This will be one journal entry, containing a title as well as an image that the user uploaded when it was created</p>
@@ -167,13 +207,11 @@
                 <div class="upload-btn-container d-flex flex-column" style="flex-grow: 1; flex-basis: 25%;">
                     <!-- The button  -->
                     <button type="button" id="sticky-upload-btn" class="btn btn-primary btn-lg rounded-circle">+</button>
-                    <div id="popup-menu" class="popup-menu">
-                        <ul>
-                            <li>
-                                <button id="new-upload-btn" type="button" class="btn btn-primary btn-lg">Upload entry</button>
-                            </li>
-                        </ul>
-                    </div>   
+                    <ul id="upload-popup-btn" class="upload-popup-btn">
+                        <li>
+                            <button type="button" class="btn btn-primary btn-lg">Upload entry</button>
+                        </li>
+                    </ul>  
                 </div>
             </div>
         </div>

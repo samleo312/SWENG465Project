@@ -18,8 +18,6 @@ router.post('/submit-login', (req, res) => {
         if(results.length == 0 || results[0].Password != password){
             res.send('LOGIN_FAILED')
         }
-
-        
         else{
             res.send('LOGIN_SUCCESS')
         }
