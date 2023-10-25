@@ -133,8 +133,10 @@
                 });
 
                 //Update elements with user, to pass user to all screens that can be navigated to.
-                document.getElementById('aboutUsLink').href = '/about-us/' + window.location.search
-                document.getElementById('go-to-account').href = '/account/' + window.location.search
+                document.getElementById('about-us-link').href = '/about-us/' + window.location.search;
+                document.getElementById('go-to-account').href = '/account/' + window.location.search;
+                document.getElementById('home-link').href = '/home/' + window.location.search;
+                document.getElementById('go-to-settings').href = '/home/' + window.location.search; // just goes home for now
             });
 
         </script>
@@ -147,9 +149,9 @@
                     <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav tab-margins">
-                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                            <a class="nav-link" href="#">Feed</a>
-                            <a id="aboutUsLink" class="nav-link" href="/about-us">About</a>
+                            <a id="home-link" class="nav-link active" aria-current="page" href="/home">Home</a>
+                            <a id='feed-link' class="nav-link" href="#">Feed</a>
+                            <a id="about-us-link" class="nav-link" href="/about-us">About</a>
                         </div>
                     </div>
                 </div>

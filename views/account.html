@@ -36,15 +36,11 @@
                     }
                 });
 
+                document.getElementById('home-link').href = '/home/' + window.location.search;
+                document.getElementById('about-us-link').href = '/about-us/' + window.location.search;
+                document.getElementById('go-to-account').href = '/account/' + window.location.search;
+                document.getElementById('go-to-settings').href = '/home/' + window.location.search; // just goes home for now
              });
-        </script>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                document.getElementById('homeLink').href = '/home/' + window.location.search
-                document.getElementById('aboutUsLink').href = '/about-us/' + window.location.search
-
-            });
         </script>
 
     </head>
@@ -54,9 +50,9 @@
                 <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div class="tabs navbar-nav tab-margins" style="text-decoration: none;">
-                        <a id='homeLink' class="nav-link" href="/home">Home</a>
-                        <a id='feedLink' class="nav-link" href="#">Feed</a>
-                        <a id='aboutUsLink'class="nav-link" href="/about-us">About</a>
+                        <a id='home-link' class="nav-link" href="/home">Home</a>
+                        <a id='feed-link' class="nav-link" href="#">Feed</a>
+                        <a id='about-us-link'class="nav-link" href="/about-us">About</a>
                     </div>
                 </div>
                 <div class="account-popup-container">

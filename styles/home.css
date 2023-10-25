@@ -54,6 +54,7 @@
     border-radius: 8px;
     padding: 10px;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .3);
+    pointer-events: none;
     z-index: 2; /* Pops up below the profile icon */
     opacity: 0; /* Set initial opacity to 0 to make it invisible */
     transform: translateY(-10px); /* move the popup up and down */
@@ -65,6 +66,7 @@
     display: block;
     opacity: 1;
     transform: translateY(0); /* move the popup up and down */
+    pointer-events: auto;
 }
 
 /* additional styling for the unordered list */
@@ -130,6 +132,7 @@
     /* Add a transition for opacity and transform */
     transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
     transform: translateY(10px); /* move the popup up and down */
+    pointer-events: none;
 }
 
 /* this will make the pop up menu fade in */
@@ -137,6 +140,7 @@
     display: block;
     opacity: 1;
     transform: translateY(0); /* move the popup up and down */
+    pointer-events: auto;
 }
 
 /* additional styling for the unordered list */
