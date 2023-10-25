@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<base href="/"/>
+<base href="/">
 <html lang="en">
     <head>
         <meta charset="UTF-8">
@@ -13,6 +13,13 @@
         
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
+                //Update elements with user, to pass user to all screens that can be navigated to.
+                document.getElementById('aboutUsLink').href = '/about-us/' + window.location.search
+                document.getElementById('accountIcon').href = '/account/' + window.location.search
+                
+
+
+
                 // button in bottom right corner 
                 const stickyButton = document.getElementById('sticky-upload-btn');
                 const uploadPopup = document.getElementById('upload-popup-btn');
@@ -144,8 +151,9 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav tab-margins">
                             <a class="nav-link active" aria-current="page" href="/home">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
                             <a class="nav-link" href="#">Feed</a>
-                            <a class="nav-link" href="/about-us">About</a>
+                            <a id="aboutUsLink" class="nav-link" href="/about-us">About</a>
                         </div>
                     </div>
                 </div>
@@ -170,42 +178,39 @@
                         </ul>
                     </div>
                 </div>
-
             </nav>
             
 
             <div class="d-flex flex-row" style="flex-grow: 1;">
                 <div class="d-flex flex-column" style="flex-grow: 1; flex-basis: 75%;">
-                    <ul id="card-list" class="list-group">
-                        <li class="list-group-item">
-                            <div class="card d-flex " style="flex-grow: 1;">
-                                <img class="journal-img card-img-top" src="example1.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Card title</h5>
-                                  <p class="card-text">This will be one journal entry, containing a title as well as an image that the user uploaded when it was created</p>
-                                  <a href="#" class="btn btn-primary">View</a>
-                                  <a href="#" class="btn btn-primary">Edit</a>
-                                </div>
+                    <div class="card-grid">
+                        <!-- Your posts will be dynamically added here -->
+                        <!-- Example 1 -->
+                        <div class="card d-flex">
+                            <img class="card-img-top" src="example1.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p>
+                                <a href="#" class="btn btn-primary">View</a>
+                                <a href="#" class="btn btn-primary">Edit</a>
                             </div>
-                        </li>
-                        <!--TODO: MAKE EXISTING ENTRIES A GRID STYLE-->
-                        <!--TODO: MAKE CREATE NEW ENTRY BUTTON FLOATING ABOVE GRID IN LOWER RIGHT, LIKE MOBILE APP-->
-                        <li class="list-group-item">
-                            <div class="card d-flex " style="flex-grow: 1;">
-                                <img class="journal-img card-img-top" src="example2.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                  <h5 class="card-title">Card title</h5>
-                                  <p class="card-text">This will be one journal entry, containing a title as well as an image that the user uploaded when it was created</p>
-                                  <a href="#" class="btn btn-primary">View</a>
-                                  <a href="#" class="btn btn-primary">Edit</a>
-                                </div>
+                        </div>
+
+                        <!-- Example 2 -->
+                        <div class="card d-flex">
+                            <img class="card-img-top" src="example2.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is another journal entry with a different image and caption.</p>
+                                <a href="#" class="btn btn-primary">View</a>
+                                <a href="#" class="btn btn-primary">Edit</a>
                             </div>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
                 <!--TODO: GET AN SVG ICONS LIBRARY OF SOME KIND MAYBE. TRIED USING PNGS FOR LITTLE ICONS SUCH AS PLUS SIGN (ADD), PENCIL (EDIT), DELETE (TRASH CAN), BUT IT LOOKS LIKE HOT GARBAGE-->
                 <div class="upload-btn-container d-flex flex-column" style="flex-grow: 1; flex-basis: 25%;">
-                    <!-- The button  -->
+                    <!-- The button to open the upload menu -->
                     <button type="button" id="sticky-upload-btn" class="btn btn-primary btn-lg rounded-circle">+</button>
                     <ul id="upload-popup-btn" class="upload-popup-btn">
                         <li>
