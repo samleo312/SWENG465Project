@@ -12,14 +12,7 @@
         <!--TODO: LOAD SAVED JOURNAL ENTRIES FROM DB BASED ON LOGGED IN ACCOUNT. LOAD INTO LISTGROUP OF BUTTONS (TO BE CHANGED)-->
         
         <script>
-            document.addEventListener('DOMContentLoaded', (event) => {
-                //Update elements with user, to pass user to all screens that can be navigated to.
-                document.getElementById('aboutUsLink').href = '/about-us/' + window.location.search
-                document.getElementById('accountIcon').href = '/account/' + window.location.search
-                
-
-
-
+            document.addEventListener('DOMContentLoaded', (event) => {                
                 // button in bottom right corner 
                 const stickyButton = document.getElementById('sticky-upload-btn');
                 const uploadPopup = document.getElementById('upload-popup-btn');
@@ -138,6 +131,10 @@
                             uploadPopup.classList.remove('visible');
                     }
                 });
+
+                //Update elements with user, to pass user to all screens that can be navigated to.
+                document.getElementById('aboutUsLink').href = '/about-us/' + window.location.search
+                document.getElementById('go-to-account').href = '/account/' + window.location.search
             });
 
         </script>
@@ -150,7 +147,6 @@
                     <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav tab-margins">
-                            <a class="nav-link active" aria-current="page" href="/home">Home</a>
                             <a class="nav-link active" aria-current="page" href="/home">Home</a>
                             <a class="nav-link" href="#">Feed</a>
                             <a id="aboutUsLink" class="nav-link" href="/about-us">About</a>
@@ -214,7 +210,7 @@
                     <button type="button" id="sticky-upload-btn" class="btn btn-primary btn-lg rounded-circle">+</button>
                     <ul id="upload-popup-btn" class="upload-popup-btn">
                         <li>
-                            <button type="button" class="btn btn-primary btn-lg">Upload entry</button>
+                            <button id="new-upload-btn" type="button" class="btn btn-primary btn-lg">Upload entry</button>
                         </li>
                     </ul>  
                 </div>
