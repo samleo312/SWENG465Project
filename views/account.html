@@ -34,12 +34,30 @@
                             accountPopup.classList.remove('open');
                         }
                     }
+                    console.log(window.location.search);
                 });
 
                 document.getElementById('home-link').href = '/home/' + window.location.search;
                 document.getElementById('about-us-link').href = '/about-us/' + window.location.search;
                 document.getElementById('go-to-account').href = '/account/' + window.location.search;
                 document.getElementById('go-to-settings').href = '/home/' + window.location.search; // just goes home for now
+
+                const parameterEmail = window.location.search;
+
+                let emailPattern = /user=([\w.-]+@[A-Za-z]+\.[A-Za-z]{2,4})/;
+                let match = parameterEmail.match(emailPattern);
+                const currentUserEmail = document.getElementById('email');
+                const currentUserPassword = document.getElementById('password');
+
+                if (match)
+                {
+                    let email = match[1];
+                    currentUserEmail.textContent = `Email: ${email}`;
+                }
+                else
+                {
+                    console.log("Email failed to be found");
+                }
              });
         </script>
 
@@ -80,9 +98,7 @@
             <div class="prof-container d-flex flex-column">
                 <img src="pfp.png" class="prof-img rounded-circle">
                 <div class="user-info-container">
-                    <p class="user">Email: 123@helpmeplz.net</p>
-                    <p class="user">Username: css_gives_me_headaches</p>
-                    <p class="user">Password: *********</p>
+                    <p id="email" class="user">Email: 123@helpmeplz.net</p>
                     <a href="" class="change-password"> Change Password? </a>
                 </div>
             </div>
