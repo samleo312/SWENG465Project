@@ -10,6 +10,7 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'register.html'));
 });
 
+//TO DO: Store date that user registers on, that way "Journey Started On:" date is correct in Account info"
 router.post('/submit-registration', (req, res) => {
     email = req.body.Email
     password = req.body.Password
