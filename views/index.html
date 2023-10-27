@@ -4,7 +4,7 @@
             SWENG465PROJECT
         </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        
+        <link rel="stylesheet" href="login_register.css">
         <style>
             body {
                 background: url('forest.jpg') no-repeat center center fixed; 
@@ -61,28 +61,30 @@
 
     <body>
         <div class="d-flex flex-column translucent-form-overlay justify-content-center">
-            <div class="card w-50 justify-content-center">
+            <div class="custom-card card w-50 justify-content-center">
                 <div class="card-body">
                     <div class="d-flex flex-column justify-content-center">
                         <h1 style="text-align: center;">Welcome to Trailblazer!</h1>
                         <form id="loginForm">
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                              <input type="email" id="emailInput" class="form-control" placeholder="Email"/>
-                            </div>
-                          
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                              <input type="password" id="passwordInput" class="form-control" placeholder="Password" />
-                            </div>
-                          
-                          
-                            <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
-                          
-                            <!-- Register buttons -->
-                            <div class="text-center">
-                              <p>Not a member? <a href="register">Register</a></p>
+                            <div class="d-flex flex-column justify-content-between align-items-center">
+                                <!-- Email input -->
+                                <div class="text-input-container form-outline mb-4">
+                                  <input type="email" id="emailInput" class="email-input form-control" placeholder="Email"/>
+                                </div>
+                              
+                                <!-- Password input -->
+                                <div class="text-input-container form-outline mb-4">
+                                  <input type="password" id="passwordInput" class="password-input form-control" placeholder="Password" />
+                                </div>
+                              
+                              
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+                              
+                                <!-- Register buttons -->
+                                <div class="text-center">
+                                  <p>Not a member? <a href="register">Register</a></p>
+                                </div>
                             </div>
                         </form>
                     </div>
