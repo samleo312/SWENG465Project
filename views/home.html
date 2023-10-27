@@ -139,25 +139,33 @@
                 document.getElementById('home-link').href = '/home/' + window.location.search;
                 document.getElementById('go-to-settings').href = '/home/' + window.location.search; // just goes home for now
 
-                const img = document.getElementById('card-img1');
+                const imagesOnCards = document.querySelectorAll('.img-on-card');
                 const imgModal = document.getElementById('modal1');
                 const modalContent = document.getElementById('img01');
-                const closeModal = document.getElementById('close-modal');
+                const closeButton = document.getElementById('close-modal');
 
                 // When the user clicks the image, open the modal
-                img.onclick = function () {
+                function openModal(e) {
                     imgModal.style.display = "block";
-                    modalContent.src = this.src;
+                    modalContent.src = e.target.src;
                 }
 
                 // When the user clicks the close button or anywhere outside the modal, close it
-                closeModal.onclick = function() {
+                function closeModal () {
                     imgModal.style.display = "none";
                 }
 
-                window.onclick = function(event) {
-                    if (event.target == imgModal) {
-                        imgModal.style.display = "none";
+                // Add click event listeners to all imageModals
+                imagesOnCards.forEach((image) =>{
+                    image.addEventListener('click', openModal);
+                })
+
+                closeButton.onclick = closeModal
+
+                 // Add click event listener to close the modal when clicking outside
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        closeModalFunction();
                     }
                 }
             });
@@ -208,12 +216,8 @@
                         <!-- Your posts will be dynamically added here -->
                         <!-- Example 1 -->
                         <div class="card d-flex">
-                            <img id="card-img1" class="card-img-top" src="example1.jpg" alt="Card image cap">
+                            <img class="img-on-card card-img-top" src="example1.jpg" alt="Card image cap">
                             <!-- Modal div to be opened for enlarged picture -->
-                            <div id="modal1" class="modal">
-                                <span class="close" id="close-modal">&times;</span>
-                                <img class="modal-content" id="img01">
-                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p>
@@ -224,7 +228,7 @@
 
                         <!-- Example 2 -->
                         <div class="card d-flex">
-                            <img class="card-img-top" src="example2.jpg" alt="Card image cap">
+                            <img class="img-on-card card-img-top" src="example2.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is another journal entry with a different image and caption.</p>
@@ -243,6 +247,10 @@
                             <button id="new-upload-btn" type="button" class="btn btn-primary btn-lg">Upload entry</button>
                         </li>
                     </ul>  
+                </div>
+                <div id="modal1" class="modal">
+                    <span class="close" id="close-modal">&times;</span>
+                    <img class="modal-content" id="img01">
                 </div>
             </div>
         </div>
