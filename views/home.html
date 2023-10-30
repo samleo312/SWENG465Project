@@ -37,6 +37,10 @@
 
                 // Toggle menu visibility
                 stickyButton.addEventListener('click', () => {
+
+                    $('#add-entry-modal').modal('toggle')
+
+                    /*
                     if (uploadPopup.classList.contains('visible')) {
                         uploadPopup.classList.remove('visible');
                     } else {
@@ -48,6 +52,7 @@
                             uploadPopup.classList.remove('visible');
                         }
                     });
+                    */
                 });
 
                 // Close the menus when clicking outside
@@ -209,10 +214,50 @@
                 </div>
             </nav>
             
+            <!--Add Entry Modal-->
+            <div class="modal fade" id="add-entry-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="add-entry-modal-title">Add a Journal Entry</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <form>
+                                <div class="form-group">
+                                  <label for="title">Title:</label>
+                                  <input type="text" id="title" name="title" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="description">Description:</label>
+                                  <input type="text" id="description-text" name="description" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                  <label for="what-happened">What Happened? :</label>
+                                  <textarea id="what-happened-text" name="what-happened" rows="4" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                  <label for="picture">Upload a picture:</label>
+                                  <input type="file" id="picture-upload" name="picture" accept="image/*" class="form-control-file">
+                                </div>
+                              </form>
+                              
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                </div>
+            </div>
 
             <div class="d-flex flex-row" style="flex-grow: 1;">
                 <div class="d-flex flex-column" style="flex-grow: 1; flex-basis: 75%;">
-                    <div class="card-grid">
+                    <div id='entry-grid' class="card-grid">
                         <!-- Example 1 -->
                         <div class="card d-flex">
                             <img class="img-on-card card-img-top" src="example1.jpg" alt="Card image cap">
@@ -277,11 +322,11 @@
                 <div class="upload-btn-container d-flex flex-column" style="flex-grow: 1; flex-basis: 25%;">
                     <!-- The button to open the upload menu -->
                     <button type="button" id="sticky-upload-btn" class="btn btn-primary btn-lg rounded-circle">+</button>
-                    <ul id="upload-popup-btn" class="upload-popup-btn">
+                    <!--<ul id="upload-popup-btn" class="upload-popup-btn">
                         <li>
                             <button id="new-upload-btn" type="button" class="btn btn-primary btn-lg">Upload entry</button>
                         </li>
-                    </ul>  
+                    </ul>  -->
                 </div>
                 <div id="modal1" class="modal">
                     <span class="close" id="close-modal">&times;</span>
