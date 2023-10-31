@@ -11,17 +11,15 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'home.html'));
 });
 
-// JavaScript code for handling card click
-// document.addEventListener('DOMContentLoaded', (event) => {
-//  ... Your existing JavaScript code ...
+router.post('/load-entries', (req, res) => {
+    let user = req.session.userEmail
+    console.log(user)
+    DBHelper.QueryDB('Data', 'Entries', {Email: user}, (results) => {
+        res.send(results)
+    });
+    
+    
+});
 
-// Handle the image click to toggle text
-//     document.querySelectorAll('.card img').forEach((img) => {
-//         img.addEventListener('click', (event) => {
-//             const card = event.target.closest('.card');
-//             card.classList.toggle('active');
-//         });
-//     });
-// });
 
 module.exports = router;
