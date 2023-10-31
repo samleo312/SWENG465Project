@@ -21,5 +21,8 @@ router.post('/load-entries', (req, res) => {
     
 });
 
+router.post('/add-entry', (req, res) => {
+    
+}); 
 
 module.exports = router;

@@ -24,7 +24,7 @@
                 });
               
                 let responseJSON = await response.json()
-
+                console.log(responseJSON)
                 
             }
 
@@ -71,6 +71,18 @@
                     }
                 });
 
+                let addEntryForm = document.getElementById('add-entry-form')
+
+                addEntryForm.addEventListener('submit', async (event) => {
+                    event.preventDefault(); 
+
+                    let title = document.getElementById('title-text').value;
+                    let description = document.getElementById('description-text').value
+                    let whatHappened = document.getElementById('what-happened-text').value
+                    let photoUpload = document.getElementById('picture-upload')
+
+                });
+
                 //Update elements with user, to pass user to all screens that can be navigated to.
                 document.getElementById('about-us-link').href = '/about-us/' + window.location.search;
                 document.getElementById('go-to-account').href = '/account/' + window.location.search;
@@ -86,7 +98,7 @@
                 // When the user clicks the image, open the modal
                 img.onclick = function () {
                     imgModal.style.display = "block";
-                    modalContent.src = this.src;
+                    modalContent.src = this.src; 
                 }
 
                 // When the user clicks the close button or anywhere outside the modal, close it
@@ -141,7 +153,7 @@
             </nav>
             
             <!--Add Entry Modal-->
-            <div class="modal fade" id="add-entry-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+            <div class="modal fade" id="add-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -152,21 +164,21 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <form>
+                            <form id="add-entry-form">
                                 <div class="form-group">
-                                  <label for="title">Title:</label>
-                                  <input type="text" id="title" name="title" class="form-control">
+                                  <label for="title-text">Title:</label>
+                                  <input type="text" id="title-text" name="title" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                  <label for="description">Description:</label>
+                                  <label for="description-text">Description:</label>
                                   <input type="text" id="description-text" name="description" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                  <label for="what-happened">What Happened? :</label>
+                                  <label for="what-happened-text">What Happened? :</label>
                                   <textarea id="what-happened-text" name="what-happened" rows="4" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
-                                  <label for="picture">Upload a picture:</label>
+                                  <label for="picture-upload">Upload a picture:</label>
                                   <input type="file" id="picture-upload" name="picture" accept="image/*" class="form-control-file">
                                 </div>
                               </form>
@@ -175,7 +187,7 @@
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" id="save-entry-button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" id="save-entry-button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
                 </div>
