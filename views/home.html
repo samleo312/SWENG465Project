@@ -9,16 +9,32 @@
         </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="home.css">
-        <!--TODO: LOAD SAVED JOURNAL ENTRIES FROM DB BASED ON LOGGED IN ACCOUNT. LOAD INTO LISTGROUP OF BUTTONS (TO BE CHANGED)-->
-        
+
         <script>
+
+            async function loadEntries(){
+                //let InnerHTML = document.getElementById('entry-grid').InnerHTML
+                //InnerHTML = ''
+                const response = await fetch('/home/load-entries', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        body: '',
+                });
+              
+                let responseJSON = await response.json()
+                console.log(responseJSON)
+                
+            }
+
             document.addEventListener('DOMContentLoaded', (event) => {                
                 // button in bottom right corner 
                 const stickyButton = document.getElementById('sticky-upload-btn');
-                const uploadPopup = document.getElementById('upload-popup-btn');
-                const newUploadBtn = document.getElementById('new-upload-btn');
                 const accountIconClick = document.getElementById('account-clickable-icon');
                 const accountPopup = document.getElementById('account-popup');
+
+                loadEntries(); 
 
                 // Toggle account menu visibility
                 accountIconClick.addEventListener('click', () => {
@@ -35,24 +51,9 @@
                     });
                 });
 
-                // Toggle menu visibility
+                // Toggle Add Entry Modal
                 stickyButton.addEventListener('click', () => {
-
                     $('#add-entry-modal').modal('toggle')
-
-                    /*
-                    if (uploadPopup.classList.contains('visible')) {
-                        uploadPopup.classList.remove('visible');
-                    } else {
-                        uploadPopup.classList.add('visible');
-                    }
-                    // also close when scrolling
-                    document.addEventListener('scroll', (event) =>{
-                        if (uploadPopup.classList.contains('visible')) {
-                            uploadPopup.classList.remove('visible');
-                        }
-                    });
-                    */
                 });
 
                 // Close the menus when clicking outside
@@ -70,71 +71,15 @@
                     }
                 });
 
+                let addEntryForm = document.getElementById('add-entry-form')
 
-                // TODO: Ideally this will be able to allow the user to input these items
-                // But for now, the creation of the card stays as is
-                // Also needs to chang to fit the grid that we want
-                newUploadBtn.addEventListener('click', (event) => {
-                    // get the element so a new card can be added to the list
-                    const cardList = document.getElementById('card-list');
-                    
-                    // create the next list item
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('list-group-item');
+                addEntryForm.addEventListener('submit', async (event) => {
+                    event.preventDefault(); 
 
-                    // create the card for that list item
-                    const card = document.createElement('div');
-                    card.classList.add('card', 'd-flex');
-                    card.style.flexGrow = 1;
-
-                    // create the image tag for that card
-                    const image = document.createElement('img');
-                    image.classList.add('card-img-top');
-                    image.src = 'example1.jpg';
-                    image.alt = 'Card image cap'
-                    image.style.height = '500px';
-
-                    // create the div card body tag for that card
-                    const cardBody = document.createElement('div');
-                    cardBody.classList.add('card-body');
-
-                    // create the h5 tag for that card body
-                    const cardHeader = document.createElement('h5');
-                    cardHeader.classList.add('card-title');
-                    cardHeader.textContent = 'Card title';                   
-                    
-                    // create the p tag for that card body
-                    const cardText = document.createElement('p');
-                    cardText.classList.add('card-text');
-                    cardText.textContent = 'This will be one journal entry, containing a title as well as an image that the user uploaded when it was created';
-
-                    // create the view tag for that card body
-                    const viewBtn = document.createElement('a');
-                    viewBtn.href = '#';
-                    viewBtn.classList.add('btn', 'btn-primary');
-                    viewBtn.textContent = 'View';
-
-                    // create the view tag for that card body
-                    const editBtn = document.createElement('a');
-                    editBtn.href = '#';
-                    editBtn.classList.add('btn', 'btn-primary');
-                    editBtn.textContent = 'Edit';
-                    editBtn.style.marginLeft = '5px';
-
-                    // append them all in the order they need to be
-                    cardList.appendChild(listItem);
-                    listItem.appendChild(card);
-                    card.appendChild(image);
-                    card.appendChild(cardBody);
-                    cardBody.appendChild(cardHeader);
-                    cardBody.appendChild(cardText);
-                    cardBody.appendChild(viewBtn);
-                    cardBody.appendChild(editBtn);
-
-                    // gets rid of the pop up when this upload button is clicked
-                    if (uploadPopup.classList.contains('visible')) {
-                            uploadPopup.classList.remove('visible');
-                    }
+                    let title = document.getElementById('title-text').value;
+                    let description = document.getElementById('description-text').value
+                    let whatHappened = document.getElementById('what-happened-text').value
+                    let photoUpload = document.getElementById('picture-upload')
 
                 });
 
@@ -153,7 +98,7 @@
                 // When the user clicks the image, open the modal
                 function openModal(e) {
                     imgModal.style.display = "block";
-                    modalContent.src = e.target.src;
+                    modalContent.src = this.src; 
                 }
 
                 // When the user clicks the close button or anywhere outside the modal, close it
@@ -216,7 +161,7 @@
             </nav>
             
             <!--Add Entry Modal-->
-            <div class="modal fade" id="add-entry-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-backdrop="false">
+            <div class="modal fade" id="add-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -227,21 +172,21 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <form>
+                            <form id="add-entry-form">
                                 <div class="form-group">
-                                  <label for="title">Title:</label>
-                                  <input type="text" id="title" name="title" class="form-control">
+                                  <label for="title-text">Title:</label>
+                                  <input type="text" id="title-text" name="title" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                  <label for="description">Description:</label>
+                                  <label for="description-text">Description:</label>
                                   <input type="text" id="description-text" name="description" class="form-control">
                                 </div>
                                 <div class="form-group">
-                                  <label for="what-happened">What Happened? :</label>
+                                  <label for="what-happened-text">What Happened? :</label>
                                   <textarea id="what-happened-text" name="what-happened" rows="4" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
-                                  <label for="picture">Upload a picture:</label>
+                                  <label for="picture-upload">Upload a picture:</label>
                                   <input type="file" id="picture-upload" name="picture" accept="image/*" class="form-control-file">
                                 </div>
                               </form>
@@ -250,7 +195,7 @@
                     </div>
                     <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" id="save-entry-button" class="btn btn-primary">Save changes</button>
                     </div>
                 </div>
                 </div>
@@ -328,10 +273,6 @@
                             <button id="new-upload-btn" type="button" class="btn btn-primary btn-lg">Upload entry</button>
                         </li>
                     </ul>  -->
-                </div>
-                <div id="modal1" class="modal">
-                    <span class="close" id="close-modal">&times;</span>
-                    <img class="modal-content" id="img01">
                 </div>
             </div>
         </div>
