@@ -143,6 +143,7 @@
                 document.getElementById('go-to-account').href = '/account/' + window.location.search;
                 document.getElementById('home-link').href = '/home/' + window.location.search;
                 document.getElementById('go-to-settings').href = '/home/' + window.location.search; // just goes home for now
+                document.getElementById('feed-link').href = '/feed/' + window.location.search;
 
                 const imagesOnCards = document.querySelectorAll('.img-on-card');
                 const imgModal = document.getElementById('modal1');
@@ -186,7 +187,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav tab-margins">
                             <a id="home-link" class="nav-link active" aria-current="page" href="/home">Home</a>
-                            <a id='feed-link' class="nav-link" href="#">Feed</a>
+                            <a id='feed-link' class="nav-link" href="/feed">Feed</a>
                             <a id="about-us-link" class="nav-link" href="/about-us">About</a>
                         </div>
                     </div>

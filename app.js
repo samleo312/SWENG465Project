@@ -24,12 +24,14 @@ const homeRoute = require('./routes/home');
 const accountRoute = require('./routes/account');
 const aboutRoute = require('./routes/about');
 const registerRoute = require('./routes/register');
+const feedRoute = require('./routes/feed');
 
 app.use('/', indexRoute);
 app.use('/home', homeRoute);
 app.use('/account', accountRoute);
 app.use('/about-us', aboutRoute);
-app.use('/register', registerRoute)
+app.use('/register', registerRoute);
+app.use('/feed', feedRoute);
 app.use(express.static('./images'));
 app.use(express.static('styles'));
 

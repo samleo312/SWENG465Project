@@ -1,4 +1,4 @@
-/* overall body styling */
+/* Styles the body to take up the whole viewheight and viewwidth */
 body{
     margin: 0;
     height: 100vh;
@@ -7,21 +7,21 @@ body{
 
 /* adjustable content pane to hold the page contents */
 .content-pane{
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     height: 100%;
-    max-height: 100%;
-    min-height: 25%;
+    flex-basis: 100%;
 }
 
-/* header styling */
+/* Header just holds the title and tabs */
 .header{
-    background-color: rgb(169, 219, 161);
+    background-color:rgb(169, 219, 161);
     height: 10%;
-    max-height: 10%;
     width: 100%;
     padding: 12px;
     flex: 0;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 /* additional styling for the Home, Feed, and About tabs */
@@ -39,15 +39,15 @@ body{
     text-wrap: nowrap;
 }
 
-/* styling for the tabs bar */
-.tabs {
+/* tabs styling */
+.tabs{
     flex: 1;
     justify-content: flex-start;
+    text-decoration: none;
     max-width: fit-content;
-    border: none;
 }
 
-/* tabs to other pages do not have border when hovered over */
+/* links do not have border when hovered over */
 .nav-tabs .nav-link{
     border: none;
 }
@@ -62,7 +62,6 @@ body{
     max-height: 40px;
     max-width: 40px;
 }
-
 /* container for the account popup and clickable icon */
 .account-popup-container{
     position: relative;
@@ -124,29 +123,4 @@ body{
 /* when account-popup is hovered over, it changes colors */
 .account-popup li a:hover {
     color: white;
-}
-
-/* about information */
-.information{
-    margin-top: 10%;
-}
-
-/* ul styling */
-.information ul{
-    list-style-type: none;
-}
-
-/* list items styling */
-.information li{
-    background-color: lightgray;
-    border: 2px solid black;
-    border-radius: 20px;
-    margin: 4px 0px;
-}
-
-/* content of the p tags in the list items */
-.paragraph-content{
-    padding: 12px;
-    font-size: 12px;
-    font-weight: 600;
 }
