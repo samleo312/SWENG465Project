@@ -21,6 +21,8 @@ router.post('/load-entries', (req, res) => {
     
 });
 
+//https://www.bezkoder.com/node-js-upload-store-images-mongodb/
+
 router.post('/add-entry', (req, res) => {
     
 }); 
