@@ -65,13 +65,15 @@
     </head>
     <body>
         <div class="content-pane d-flex flex-column">
-            <nav class="header navbar navbar-expand-lg" style="background-color: rgb(169, 219, 161); justify-content: space-between;">
-                <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="tabs navbar-nav tab-margins" style="text-decoration: none;">
-                        <a id='home-link' class="nav-link" href="/home">Home</a>
-                        <a id='feed-link' class="nav-link" href="/feed">Feed</a>
-                        <a id='about-us-link'class="nav-link" href="/about-us">About</a>
+            <nav class="header navbar navbar-expand-lg" style="justify-content: space-between;">
+                <div class="left-side-header d-flex flex-row align-items-center">
+                    <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
+                    <div class="tabs-container" id="navbarNavAltMarkup">
+                        <div class="tabs tab-margins d-flex flex-row justify-content-between" style="text-decoration: none;">
+                            <a id='home-link' class="home-link" href="/home">Home</a>
+                            <a id='feed-link' class="feed-link" href="/feed">Feed</a>
+                            <a id='about-us-link'class="about-us-link" href="/about-us">About</a>
+                        </div>
                     </div>
                 </div>
                 <div class="account-popup-container">

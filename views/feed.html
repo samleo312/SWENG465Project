@@ -10,6 +10,33 @@
 
         <script>
              document.addEventListener('DOMContentLoaded', (event) => {
+                const accountIconClick = document.getElementById('account-clickable-icon');
+                const accountPopup = document.getElementById('account-popup');
+
+                // Toggle account menu visibility
+                accountIconClick.addEventListener('click', () => {
+                    if (accountPopup.classList.contains('open')) {
+                        accountPopup.classList.remove('open');
+                    } else {
+                        accountPopup.classList.add('open');
+                    }
+                    // also close when scrolling
+                    document.addEventListener('scroll', (event) =>{
+                        if (accountPopup.classList.contains('open')) {
+                            accountPopup.classList.remove('open');
+                        }
+                    });
+                });
+
+                document.addEventListener('click', (event) => {
+                    if (!accountIconClick.contains(event.target) && !accountPopup.contains(event.target)) {
+                        if (accountPopup.classList.contains('open')) {
+                            accountPopup.classList.remove('open');
+                        }
+                    }
+                    console.log(window.location.search);
+                });
+
                 document.getElementById('home-link').href = '/home/' + window.location.search;
                 document.getElementById('about-us-link').href = '/about-us/' + window.location.search;
                 document.getElementById('go-to-account').href = '/account/' + window.location.search;
@@ -19,14 +46,16 @@
         </script>
     </head>
     <body>
-        <div class="content-pane d-flex flex-column">
-            <nav class="header navbar navbar-expand-lg" style="background-color: rgb(169, 219, 161); justify-content: space-between;">
-                <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="tabs navbar-nav tab-margins" style="text-decoration: none;">
-                        <a id='home-link' class="nav-link" href="/home">Home</a>
-                        <a id='feed-link' class="nav-link" href="/feed">Feed</a>
-                        <a id='about-us-link'class="nav-link" href="/about-us">About</a>
+        <div class="content-pane d-flex flex-column justify-content-start gap-md-3">
+            <nav class="header navbar navbar-expand-lg" style="justify-content: space-between;">
+                <div class="left-side-header d-flex flex-row align-items-center">
+                    <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
+                    <div class="tabs-container" id="navbarNavAltMarkup">
+                        <div class="tabs tab-margins d-flex flex-row justify-content-between" style="text-decoration: none;">
+                            <a id='home-link' class="home-link" href="/home">Home</a>
+                            <a id='feed-link' class="feed-link" href="/feed">Feed</a>
+                            <a id='about-us-link'class="about-us-link" href="/about-us">About</a>
+                        </div>
                     </div>
                 </div>
                 <div class="account-popup-container">
@@ -50,6 +79,23 @@
                     </div>
                 </div>
             </nav>
+
+            <div class="main-content-container d-flex flex-row align-items-start">
+                <div class="friends-panel">
+                    These are friends
+                </div>
+
+                <div class="scrolling-feed-panel d-flex flex-column justify-content-start align-items-start">
+                    <div class="card d-flex flex-column justify-content-between">
+                        <div class="pfp d-flex flex-row justify-content-start">
+                            <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
+                            <p>username</p>
+                        </div>
+                        <div class="content"> content </div>
+                        <div class="settings"> settings (like clicking links)</div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

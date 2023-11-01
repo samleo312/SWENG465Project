@@ -1,4 +1,4 @@
-/* overall body styling */
+/* Styles the body to take up the whole viewheight and viewwidth */
 body{
     margin: 0;
     height: 100vh;
@@ -10,18 +10,27 @@ body{
     justify-content: flex-start;
     align-items: center;
     height: 100%;
-    max-height: 100%;
-    min-height: 25%;
+    flex-basis: 100%;
+    
 }
 
-/* header styling */
+/* Header just holds the title and tabs */
 .header{
-    background-color: rgb(169, 219, 161);
+    background-color: #186F65;
     height: 10%;
-    max-height: 10%;
     width: 100%;
     padding: 12px;
     flex: 0;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 3px #FCE09B solid;
+    flex-wrap: nowrap;
+    
+}
+
+.left-side-header{
+    flex: 1;
+    justify-content: flex-start;
 }
 
 /* additional styling for the Home, Feed, and About tabs */
@@ -30,27 +39,27 @@ body{
 }
 
 .tab-margins a{
-    color: black;
+    color: #FCE09B;
     text-wrap: nowrap;
+    text-decoration: none;
+    transition: 0.2s ease-in;
+    padding: 16px;
 }
 
 .tab-margins a:hover{
-    color: white;
+    background-color: #B5CB99;
     text-wrap: nowrap;
+    color: white;
 }
 
-/* styling for the tabs bar */
-.tabs {
+/* tabs styling */
+.tabs{
     flex: 1;
-    justify-content: flex-start;
+    text-decoration: none;
     max-width: fit-content;
-    border: none;
+    gap: .5rem;
 }
 
-/* tabs to other pages do not have border when hovered over */
-.nav-tabs .nav-link{
-    border: none;
-}
 
 /* additional styling for the profile picture icon */
 .profile-icon{
