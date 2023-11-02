@@ -65,22 +65,10 @@
                     }
 
                     if (!accountIconClick.contains(event.target) && !accountPopup.contains(event.target)) {
-                        if (accountPopup.classList.contains('open')) {
+                        if (accountPopup.classList.contains('open')) { 
                             accountPopup.classList.remove('open');
                         }
                     }
-                });
-
-                let addEntryForm = document.getElementById('add-entry-form')
-
-                addEntryForm.addEventListener('submit', async (event) => {
-                    event.preventDefault(); 
-
-                    let title = document.getElementById('title-text').value;
-                    let description = document.getElementById('description-text').value
-                    let whatHappened = document.getElementById('what-happened-text').value
-                    let photoUpload = document.getElementById('picture-upload')
-
                 });
 
                 //Update elements with user, to pass user to all screens that can be navigated to.
@@ -88,35 +76,27 @@
                 document.getElementById('go-to-account').href = '/account/' + window.location.search;
                 document.getElementById('home-link').href = '/home/' + window.location.search;
                 document.getElementById('go-to-settings').href = '/home/' + window.location.search; // just goes home for now
-                document.getElementById('feed-link').href = '/feed/' + window.location.search;
+        
 
-                const imagesOnCards = document.querySelectorAll('.img-on-card');
+                const img = document.getElementById('card-img1');
                 const imgModal = document.getElementById('modal1');
                 const modalContent = document.getElementById('img01');
-                const closeButton = document.getElementById('close-modal');
+                const closeModal = document.getElementById('close-modal');
 
                 // When the user clicks the image, open the modal
-                function openModal(e) {
+                img.onclick = function () {
                     imgModal.style.display = "block";
                     modalContent.src = this.src; 
                 }
 
                 // When the user clicks the close button or anywhere outside the modal, close it
-                function closeModal () {
+                closeModal.onclick = function() {
                     imgModal.style.display = "none";
                 }
 
-                // Add click event listeners to all imageModals
-                imagesOnCards.forEach((image) =>{
-                    image.addEventListener('click', openModal);
-                })
-
-                closeButton.onclick = closeModal
-
-                 // Add click event listener to close the modal when clicking outside
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        closeModalFunction();
+                window.onclick = function(event) {
+                    if (event.target == imgModal) {
+                        imgModal.style.display = "none";
                     }
                 }
             });
@@ -132,7 +112,7 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav tab-margins">
                             <a id="home-link" class="nav-link active" aria-current="page" href="/home">Home</a>
-                            <a id='feed-link' class="nav-link" href="/feed">Feed</a>
+                            <a id='feed-link' class="nav-link" href="#">Feed</a>
                             <a id="about-us-link" class="nav-link" href="/about-us">About</a>
                         </div>
                     </div>
@@ -172,7 +152,7 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <form id="add-entry-form">
+                            <form method='post' enctype="multipart/form-data" action="/home/upload" id="add-entry-form">
                                 <div class="form-group">
                                   <label for="title-text">Title:</label>
                                   <input type="text" id="title-text" name="title" class="form-control">
@@ -189,14 +169,13 @@
                                   <label for="picture-upload">Upload a picture:</label>
                                   <input type="file" id="picture-upload" name="picture" accept="image/*" class="form-control-file">
                                 </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" id="save-entry-button" class="btn btn-primary">Save changes</button>
                               </form>
                               
                         </div>
                     </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" id="save-entry-button" class="btn btn-primary">Save changes</button>
-                    </div>
+
                 </div>
                 </div>
             </div>
@@ -206,8 +185,12 @@
                     <div id='entry-grid' class="card-grid">
                         <!-- Example 1 -->
                         <div class="card d-flex">
-                            <img class="img-on-card card-img-top" src="example1.jpg" alt="Card image cap">
+                            <img id="card-img1" class="card-img-top" src="example1.jpg" alt="Card image cap">
                             <!-- Modal div to be opened for enlarged picture -->
+                            <div id="modal1" class="modal">
+                                <span class="close" id="close-modal">&times;</span>
+                                <img class="modal-content" id="img01">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">Card title</h5>
                                 <p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p>
@@ -218,7 +201,7 @@
 
                         <!-- Example 2 -->
                         <div class="card d-flex">
-                            <img class="img-on-card card-img-top" src="example2.jpg" alt="Card image cap">
+                            <img class="card-img-top" src="example2.jpg" alt="Card image cap">
                             <div class="card-body">
                                 <h5 class="card-title">Card title again</h5>
                                 <p class="card-text">This is another journal entry with a different image and caption.</p>
@@ -268,11 +251,6 @@
                 <div class="upload-btn-container d-flex flex-column" style="flex-grow: 1; flex-basis: 25%;">
                     <!-- The button to open the upload menu -->
                     <button type="button" id="sticky-upload-btn" class="btn btn-primary btn-lg rounded-circle">+</button>
-                    <!--<ul id="upload-popup-btn" class="upload-popup-btn">
-                        <li>
-                            <button id="new-upload-btn" type="button" class="btn btn-primary btn-lg">Upload entry</button>
-                        </li>
-                    </ul>  -->
                 </div>
             </div>
         </div>
