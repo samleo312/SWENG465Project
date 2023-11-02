@@ -11,17 +11,26 @@ body{
     align-items: center;
     height: 100%;
     flex-basis: 100%;
+    
 }
 
 /* Header just holds the title and tabs */
 .header{
-    background-color:rgb(169, 219, 161);
+    background-color: #186F65;
     height: 10%;
     width: 100%;
     padding: 12px;
     flex: 0;
     justify-content: flex-start;
     align-items: center;
+    border-bottom: 3px #FCE09B solid;
+    flex-wrap: nowrap;
+    
+}
+
+.left-side-header{
+    flex: 1;
+    justify-content: flex-start;
 }
 
 /* additional styling for the Home, Feed, and About tabs */
@@ -30,26 +39,25 @@ body{
 }
 
 .tab-margins a{
-    color: black;
+    color: #FCE09B;
     text-wrap: nowrap;
+    text-decoration: none;
+    transition: 0.2s ease-in;
+    padding: 16px;
 }
 
 .tab-margins a:hover{
-    color: white;
+    background-color: #B5CB99;
     text-wrap: nowrap;
+    color: white;
 }
 
 /* tabs styling */
 .tabs{
     flex: 1;
-    justify-content: flex-start;
     text-decoration: none;
     max-width: fit-content;
-}
-
-/* links do not have border when hovered over */
-.nav-tabs .nav-link{
-    border: none;
+    gap: .5rem;
 }
 
 /* additional styling for the profile picture icon */
@@ -123,4 +131,41 @@ body{
 /* when account-popup is hovered over, it changes colors */
 .account-popup li a:hover {
     color: white;
+}
+
+/* the main container holding the information for the page  */
+.main-content-container{
+    flex: 1;
+    width: 100vw;
+    height: 100vh;
+    justify-content: space-evenly;
+    
+    overflow: hidden;
+    background-color: #B5CB99;
+}
+
+.friends-panel{
+    border-right: #FCE09B 4px solid;
+    height: 100%;
+    width: 20%;
+    margin-left: 16px;
+    padding-right: 16px;
+}
+
+.scrolling-feed-panel{
+    width: 80%;
+    height: 100%;
+    padding: 2rem;
+
+}
+
+.card{
+    padding: 6px;
+    width: 75%;
+    box-sizing: 10px 10px 8px black;
+}
+
+
+.pfp{
+    gap: 0.25rem;
 }
