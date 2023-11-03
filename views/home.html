@@ -71,6 +71,30 @@
                     }
                 });
 
+
+                    var form = document.getElementById("add-entry-form");
+
+                        
+                    form.addEventListener("submit", function(event) {
+
+                        event.preventDefault();
+                        var formData = new FormData(form);
+
+                        fetch("/home/upload", {
+                            method: "POST",
+                            body: formData
+                        })
+                        .then(function(response) {
+                            console.log(response.text()) ;
+                        })
+                        .catch(function(error) {
+                            console.error(error);
+                        });
+
+                        $('#add-entry-modal').modal('toggle')
+                    });
+
+
                 //Update elements with user, to pass user to all screens that can be navigated to.
                 document.getElementById('about-us-link').href = '/about-us/' + window.location.search;
                 document.getElementById('go-to-account').href = '/account/' + window.location.search;
@@ -151,7 +175,7 @@
                     </div>
                     <div class="modal-body">
                         <div>
-                            <form method='post' enctype="multipart/form-data" action="/home/upload" id="add-entry-form">
+                            <form id="add-entry-form">
                                 <div class="form-group">
                                   <label for="title-text">Title:</label>
                                   <input type="text" id="title-text" name="title" class="form-control">
@@ -162,7 +186,7 @@
                                 </div>
                                 <div class="form-group">
                                   <label for="what-happened-text">What Happened? :</label>
-                                  <textarea id="what-happened-text" name="what-happened" rows="4" class="form-control"></textarea>
+                                  <textarea id="what-happened-text" name="whatHappened" rows="4" class="form-control"></textarea>
                                 </div>
                                 <div class="form-group">
                                   <label for="picture-upload">Upload a picture:</label>
@@ -170,7 +194,7 @@
                                 </div>
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                 <button type="submit" id="save-entry-button" class="btn btn-primary">Save changes</button>
-                              </form>
+                            </form>
                               
                         </div>
                     </div>
