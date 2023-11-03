@@ -19,16 +19,26 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
 
+
 router.post('/submit-login', (req, res) => {
     email = req.body.Email;
     password = req.body.Password;
+
+    let loginSuccess = false;
  
     DBHelper.QueryDB("Login", "Users", {Email: email}, (results) => {
-        if (results.length == 0 || results[0].Password != password) {
-            res.send('LOGIN_FAILED');
-        } else {
+        console.log(results);
+        if (results.length === 1 && results[0].Password !== '') {
             req.session.userEmail = email;
-            res.send('LOGIN_SUCCESS');
+            console.log(results[0].Password);
+            loginSuccess = true;
+        } 
+        
+        if (loginSuccess) {
+            res.status(200).send('LOGIN_SUCCESS');
+        } else {
+            
+            res.status(401).send('LOGIN_FAILED');
         }
     });
 });

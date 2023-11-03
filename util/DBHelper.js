@@ -11,14 +11,17 @@ const client = new MongoClient(url, {
 });
 
 async function QueryDB(db, collection, queryFilter, callback){
+    console.log('waiting for QUERIES...');
     var cursor = await client.db(db).collection(collection).find(queryFilter);
-    let returnedEntries = await cursor.toArray()
-
+    let returnedEntries = await cursor.toArray();
+    console.log('QUERY Ran');
     callback(returnedEntries)
 }
 
 async function InsertDB(db, collection, document, callback){
-    result = await client.db(db).collection(collection).insertOne(document)
+    console.log('waiting for INSERT...');
+    result = await client.db(db).collection(collection).insertOne(document);
+    console.log('INSERT Ran');
     callback(result);
 }
 
