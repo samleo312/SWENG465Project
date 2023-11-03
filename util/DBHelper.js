@@ -41,5 +41,5 @@ run().catch(console.dir);
 
 module.exports = {
   QueryDB, 
-  InsertDB
+  InsertDB,
 }

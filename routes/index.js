@@ -27,10 +27,9 @@ router.post('/submit-login', (req, res) => {
     let loginSuccess = false;
  
     DBHelper.QueryDB("Login", "Users", {Email: email}, (results) => {
-        console.log(results);
+        console.log(results[0]._id);
         if (results.length === 1 && results[0].Password !== '') {
             req.session.userEmail = email;
-            console.log(results[0].Password);
             loginSuccess = true;
         } 
         
