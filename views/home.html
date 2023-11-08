@@ -25,7 +25,7 @@
                 console.log(responseJSON)
 
                 for(let i = 0; i < responseJSON.length; i++){
-                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" src="example1.jpg" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">Card title</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><a href="#" class="btn btn-primary">View</a><a href="#" class="btn btn-primary">Edit</a></div></div>'
+                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><button class="btn btn-primary">View</button><button class="btn btn-primary">Edit</button>'
                     element.innerHTML += entryComponent
                 }
                 
@@ -44,7 +44,7 @@
                 // Toggle account menu visibility
                 accountIconClick.addEventListener('click', () => {
                     if (accountPopup.classList.contains('open')) {
-                        accountPopup.classList.remove('open');
+                        accountPopup.classList.remove('open'); 
                     } else {
                         accountPopup.classList.add('open');
                     }
