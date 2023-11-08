@@ -5,6 +5,7 @@
         </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" href="login_register.css">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
         <style>
             body {
                 background: url('forest.jpg') no-repeat center center fixed; 
@@ -25,7 +26,7 @@
 
             }
         </style>
-
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', (event) => {
                 form = document.getElementById('loginForm')
@@ -43,15 +44,26 @@
                         body: JSON.stringify(body),
                     });
                     let responseText = await response.text()
-                    console.log(responseText)
+                    console.log('response text: ' + responseText);
                     //NAVIGATE TO HOME SCREEN WITH USERNAME AS PARAMETER
-                    if (responseText == 'LOGIN_SUCCESS'){
+                    if (responseText == 'LOGIN_SUCCESS') {
                         window.location = "http://localhost:3000/home/";
                     }
 
                     //DISPLAY INCORRECT USERNAME OR PASSWORD TOAST
-                    else if(responseText == 'LOGIN_FAILURE'){
-
+                    else if (responseText == 'LOGIN_FAILED') {
+                        Toastify({
+                            text: "Login failure. Check your username and password.",
+                            duration: 3000,
+                            close: false,
+                            gravity: "bottom", // `top` or `bottom`
+                            position: "center", // `left`, `center` or `right`
+                            stopOnFocus: true, // Prevents dismissing of toast on hover
+                            style: {
+                                background: "linear-gradient(to right, #bd283e, #e86479)",
+                            },
+                            onClick: function(){} // Callback after click
+                        }).showToast();
                     }
                 });
             });
