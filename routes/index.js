@@ -1,5 +1,5 @@
 require('dotenv').config();
-
+const Toastify = require( 'toastify-js' );
 const express = require('express');
 const sessions = require('express-session');
 const app = express();
@@ -26,7 +26,7 @@ router.post('/submit-login', (req, res) => {
 
     let loginSuccess = false;
  
-    DBHelper.QueryDB("Login", "Users", {Email: email}, (results) => {
+    DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
         console.log(results);
         if (results.length === 1 && results[0].Password !== '') {
             req.session.userEmail = email;
@@ -37,8 +37,7 @@ router.post('/submit-login', (req, res) => {
         if (loginSuccess) {
             res.status(200).send('LOGIN_SUCCESS');
         } else {
-            
-            res.status(401).send('LOGIN_FAILED');
+            res.status(200).send('LOGIN_FAILED');
         }
     });
 });
