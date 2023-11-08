@@ -14,17 +14,22 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'home.html'));
 });
 
+
 router.post('/load-entries', (req, res) => {
-    let user = req.session.userEmail
-    console.log(user)
-    //DBHelper.QueryDB('Data', 'Entries', {Email: user}, (results) => {
-    //    res.send(results)
-    //});
+  let user = req.session.userEmail
+  results = []
+  DBHelper.QueryDB('Entries', 'text', {user: user}, async (textResults) => {
+    for (let i = 0; i < textResults.length; i++){
+      await DBHelper.QueryDB('Entries', 'images', {entryId : textResults[i]._id.toString()}, (imageResults) => {
+        results.push({text: textResults[i], image: imageResults[0]})
+      });
+    }
+    res.send(results)
+  });
     
-    
+
 });
 
-//https://www.bezko der.com/node-js-upload-store-images-mongodb/
 const handleError = (err, res) => {
     res
       .status(500)
