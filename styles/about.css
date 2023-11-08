@@ -135,18 +135,13 @@ body{
     color: white;
 }
 
-/* about information */
-.information{
-    margin-top: 10%;
-}
-
-/* ul styling */
-.information ul{
-    list-style-type: none;
-}
-
-/* list items styling */
-.information li{
+/* card to be flippable */
+.information-card {
+    perspective: 1000px; /* Set the depth of the 3D space */
+    width: 50%; /* Set the width of the card */
+    height: auto;
+    display: flex; /* Use flexbox for dynamic height */
+    flex-direction: column; /* Stack content vertically */
     background-color: lightgray;
     border: 2px solid black;
     border-radius: 20px;
@@ -156,6 +151,8 @@ body{
 /* content of the p tags in the list items */
 .paragraph-content{
     padding: 12px;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 600;
+    flex: 1;
+    height: auto;
 }

@@ -36,6 +36,11 @@
                    }
                });
 
+               document.getElementById("flippable-card").addEventListener("click", function() {
+                    var cardInner = this.querySelector(".flip-card-inner");
+                    cardInner.classList.toggle("flipped");
+                })
+
                 document.getElementById('about-us-link').href = '/about-us/' + window.location.search;
                 document.getElementById('go-to-account').href = '/account/' + window.location.search;
                 document.getElementById('home-link').href = '/home/' + window.location.search;
@@ -78,25 +83,13 @@
                     </div>
                 </div>
             </nav>
-            <div class="information d-flex flex-column">
-                <ul>
-                    <li> 
-                        <p class="paragraph-content">
-                            Hello, We are a dev team of 3 people
-                        </p>
-                    </li>
-                    <li> 
-                        <p class="paragraph-content">
-                            We are in this to learn about web services and create a service for all of those hiking enthusiasts
-                        </p>
-                    </li>
-                    <li>
-                        <p class="paragraph-content">
-                            Please let us know any suggestions for improving
-                        </p>
-                    </li>
-                </ul>
+
+            <div class="information-card" >
+                <p class="paragraph-content">
+                    At Trailblazer, our mission is to fuel the passion of hiking enthusiasts and elevate their outdoor adventures to new heights. We're on a quest to make your hiking experience extraordinary by providing a digital sanctuary for you to record and share your hiking journeys with the world. With Trailblazer, you can create captivating journal entries of your hiking escapades, complete with photos, maps, and personal anecdotes, and then, venture into a vibrant community of like-minded hikers. Discover the trails less traveled, share the awe-inspiring vistas, and connect with fellow adventurers on our interactive feed page. We're committed to uniting the hiking community, one trail at a time, to inspire, motivate, and foster a sense of camaraderie. So lace up your boots, embrace the wilderness, and let Trailblazer be your ultimate companion on your hiking journey!
+                </p>
             </div>
+              
 
         </div>
 
