@@ -58,7 +58,7 @@ router.post('/submit-login', (req, res) => {
         if (loginSuccess) {
             res.status(200).send('LOGIN_SUCCESS');
         } else {
-            res.status(200).send('LOGIN_FAILED');
+            res.status(401).send('LOGIN_FAILED');
         }
     });
 });

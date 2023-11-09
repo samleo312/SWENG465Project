@@ -25,6 +25,13 @@ async function InsertDB(db, collection, document, callback){
     callback(result);
 }
 
+async function DeleteUserDB(db, collection, user, callback){
+  console.log('waiting for DELETE...');
+  result = await client.db(db).collection(collection).deleteOne(user);
+  console.log('DELETE Ran');
+  callback(result);
+}
+
 async function run() {
     try {
       // Connect the client to the server (optional starting in v4.7)
@@ -42,4 +49,5 @@ run().catch(console.dir);
 module.exports = {
   QueryDB, 
   InsertDB,
+  DeleteUserDB
 }

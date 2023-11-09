@@ -19,7 +19,7 @@ body{
     height: 10%;
     width: 100%;
     padding: 12px;
-    flex: 1;
+    flex: 0;
     justify-content: flex-start;
     align-items: center;
     border-bottom: 3px #FCE09B solid;
@@ -261,7 +261,7 @@ body{
 }
 
 /* puts the popup menu above the button */
-#sticky-upload-btn:focus + .upload-popup-btn-btn-btn {
+#sticky-upload-btn:focus + .upload-popup-btn {
     display: block;
 }
 
@@ -285,7 +285,7 @@ body{
 /* Image within the card */
 .card img {
     width: 100%; /* Scale images to fill their parent */
-    height: auto;
+    height: 100%;
     object-fit: cover;
     cursor: pointer;
 }
@@ -298,4 +298,8 @@ body{
 /* Show text when the card is active */
 .card.active .card-text {
     display: block;
+}
+
+.btn{
+    margin: 4px;
 }

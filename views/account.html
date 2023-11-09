@@ -43,22 +43,52 @@
                 document.getElementById('go-to-settings').href = '/home/' + window.location.search; // just goes home for now
                 document.getElementById('feed-link').href = '/feed/' + window.location.search;
 
-                const parameterEmail = window.location.search;
+                window.addEventListener('load', async () => {
+                    const spinner = document.getElementById('loading-spinner');
+                    const currentUserEmail = document.getElementById('email');
+                    currentUserEmail.style.display = 'none';
+                    spinner.style.display = 'block';
+                    const response = await fetch('/account/update-user-email', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                    });
+                    
+                    spinner.style.display = 'none';
+                    currentUserEmail.style.display = 'block';
 
-                let emailPattern = /user=([\w.-]+@[A-Za-z]+\.[A-Za-z]{2,4})/;
-                let match = parameterEmail.match(emailPattern);
-                const currentUserEmail = document.getElementById('email');
-                const currentUserPassword = document.getElementById('password');
+                    const emailResponseText =  await response.text();
+    
+                    console.log(emailResponseText);
+                    currentUserEmail.textContent = `Email: ${emailResponseText}`;
+                });
 
-                if (match)
-                {
-                    let email = match[1];
-                    currentUserEmail.textContent = `Email: ${email}`;
-                }
-                else
-                {
-                    console.log("Email failed to be found");
-                }
+                const deleteLine = document.getElementById('delete-acc')
+                deleteLine.addEventListener('click', () => {
+                    $('#delete-acc-modal').modal('toggle')
+                });
+
+                const actuallyDeleteAccBtn = document.getElementById('permanent-delete');
+                actuallyDeleteAccBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+
+                    const response = await fetch('/account/delete-user-account', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                    });
+
+                    if(response.text() === 'USER_DELETED')
+                    {
+                        window.location = "http://localhost:3000/";
+                    }
+                    else
+                    {
+                        console.log(response.text());
+                    }
+                })
              });
         </script>
 
@@ -101,14 +131,36 @@
             <div class="prof-container d-flex flex-column">
                 <img src="pfp.png" class="prof-img rounded-circle">
                 <div class="user-info-container">
-                    <p id="email" class="user">Email: 123@helpmeplz.net</p>
-                    <a href="" class="change-password"> Change Password? </a>
+                    <div id="loading-spinner" class="spinner"></div>
+                    <p id="email" class="user"></p>
+                    <a href="/account" class="change-password"> Change Password? </a>
+                    <p id="delete-acc" class="change-password"> Delete Account? </p>
                 </div>
             </div>
 
             <div class="journey-container d-flex flex-column justify-content-between rounded-5">
                 <h3>Journey Started On: </h3>
                 <p>10/4/2023</p>
+            </div>
+
+            <div class="modal fade" id="delete-acc-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h4 class="modal-title" id="add-entry-modal-title">ARE YOU SURE YOU WANT TO DELETE YOUR ACCOUNT?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <button id="permanent-delete" class="btn btn-primary">Delete</button>
+                            <button class="btn btn-primary">Cancel</button>  
+                        </div>
+                    </div>
+
+                </div>
+                </div>
             </div>
         </div>
 
