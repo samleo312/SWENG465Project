@@ -31,6 +31,16 @@
                 
             }
 
+            async function logOut() {
+                const response = await fetch('/home/log-out', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        body: '',
+                });
+            }
+
             function viewEntry(imageData, title, description, whatHappened){
                 $('#view-entry-modal').modal('toggle')
             }
@@ -41,6 +51,7 @@
                 const stickyButton = document.getElementById('sticky-upload-btn');
                 const accountIconClick = document.getElementById('account-clickable-icon');
                 const accountPopup = document.getElementById('account-popup');
+                const signOutButton = document.getElementById('sign-out');
 
                 document.getElementById('entry-grid').innerHTML = ''
 
@@ -64,6 +75,11 @@
                 // Toggle Add Entry Modal
                 stickyButton.addEventListener('click', () => {
                     $('#add-entry-modal').modal('toggle')
+                });
+                
+                // Sign Out button handler
+                signOutButton.addEventListener('click', () => {
+                    logOut();
                 });
 
                 // Close the menus when clicking outside
