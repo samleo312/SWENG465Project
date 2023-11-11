@@ -14,7 +14,6 @@ router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'home.html'));
 });
 
-
 router.post('/load-entries', (req, res) => {
   let user = req.session.userEmail
   results = []
@@ -28,6 +27,12 @@ router.post('/load-entries', (req, res) => {
   });
     
 
+});
+
+router.post('/log-out', (req, res) => {
+  req.session.destroy(function(err) {
+    console.log(err);
+  });
 });
 
 const handleError = (err, res) => {

@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const sessions = require('express-session');
+const MongoStore = require('connect-mongo');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const app = express();
@@ -12,9 +13,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sessions({
   secret: process.env.SESSION_SECRET,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { maxAge: oneDay },
-  resave: false
+  resave: false, 
+  store: MongoStore.create({
+      mongoUrl: process.env.MONGO_URL,
+      ttl: oneDay,
+      autoRemove: 'native'
+  })
 }));
 
 app.use(cookieParser());

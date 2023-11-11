@@ -8,18 +8,6 @@ const path = require('path');
 const DBHelper = require("../util/DBHelper");
 const oneDay = 1000 * 60 * 60 * 24;
 
-app.use(sessions({
-    secret: process.env.SESSION_SECRET,
-    saveUninitialized: true,
-    cookie: { maxAge: oneDay },
-    resave: false
-  }));
-
-app.use((req, res, next) => {
-    console.log('Session data:', req.session);
-    next();
-});
-
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
@@ -55,7 +43,6 @@ router.post('/submit-login', (req, res) => {
     let loginSuccess = false;
  
     DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
-        console.log(results);
         if (results.length === 1 && results[0].Password !== '') {
             req.session.userEmail = email;
             loginSuccess = true;
@@ -65,6 +52,46 @@ router.post('/submit-login', (req, res) => {
             res.status(200).send('LOGIN_SUCCESS');
         } else {
             res.status(401).send('LOGIN_FAILED');
+        }
+    });
+});
+
+router.post('/submit-api-login', (req, res) => {
+    email = req.body.Email;
+    password = req.body.Password;
+
+    let loginSuccess = false;
+ 
+    DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
+        if (results.length === 1 && results[0].Password !== '') {
+            req.session.userEmail = email;
+            loginSuccess = true;
+        } 
+        
+        if (loginSuccess) {
+            res.status(200).send(res.cookies);
+        } else {
+            res.status(200).send('LOGIN_FAILED');
+        }
+    });
+});
+
+router.post('/submit-api-login', (req, res) => {
+    email = req.body.Email;
+    password = req.body.Password;
+
+    let loginSuccess = false;
+ 
+    DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
+        if (results.length === 1 && results[0].Password !== '') {
+            req.session.userEmail = email;
+            loginSuccess = true;
+        } 
+        
+        if (loginSuccess) {
+            res.status(200).send(res.cookies);
+        } else {
+            res.status(200).send('LOGIN_FAILED');
         }
     });
 });
