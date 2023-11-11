@@ -8,13 +8,6 @@ const path = require('path');
 const DBHelper = require("../util/DBHelper");
 const oneDay = 1000 * 60 * 60 * 24;
 
-app.use(sessions({
-    secret: process.env.SESSION_SECRET,
-    saveUninitialized: true,
-    cookie: { maxAge: oneDay },
-    resave: false
-  }));
-
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
@@ -27,10 +20,9 @@ router.post('/submit-login', (req, res) => {
     let loginSuccess = false;
  
     DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
-        console.log(results);
         if (results.length === 1 && results[0].Password !== '') {
             req.session.userEmail = email;
-            console.log(results[0].Password);
+            //res.send(req.session.userEmail);
             loginSuccess = true;
         } 
         
