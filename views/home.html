@@ -23,7 +23,7 @@
               
                 let responseJSON = await response.json()
                 console.log(responseJSON)
-
+                element.innerHTML = ''
                 for(let i = 0; i < responseJSON.length; i++){
                     entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><button onclick="viewEntry(\'' + responseJSON[i].image.data +'\',\'' + responseJSON[i].text.Title +'\',\'' + responseJSON[i].text.Description + '\',\'' + responseJSON[i].text.WhatHappened + '\')" class="btn btn-primary">View</button><button class="btn btn-primary">Edit</button>'
                     element.innerHTML += entryComponent
@@ -43,6 +43,9 @@
 
             function viewEntry(imageData, title, description, whatHappened){
                 $('#view-entry-modal').modal('toggle')
+                modalBody = document.getElementById('view-entry-modal-body')
+
+                modalBody.innerHTML = '<h5>'+ title + '</h5> <img src="data:image/png;base64,'+ imageData + '" alt="Card image cap"> <h5>'+ description + '</h5> <h5>'+ whatHappened + '</h5>'
             }
 
 
@@ -111,14 +114,14 @@
                             body: formData
                         })
                         .then(function(response) {
-                            console.log(response.text()) ;
+                            console.log(response.text());
+                            loadEntries(document.getElementById('entry-grid'));
                         })
                         .catch(function(error) {
                             console.error(error);
                         });
 
                         $('#add-entry-modal').modal('toggle')
-                        loadEntries(document.getElementById('entry-grid'));
                     });
 
 
@@ -157,7 +160,7 @@
 
     <body>
         <div class="d-flex flex-column" style="height: 100vh;">
-            <nav class="header navbar navbar-expand-lg" style="justify-content: space-between;">
+            <nav class="header navbar navbar-expand-lg" style="justify-content: space-between; max-height: min-content;">
                 <div class="left-side-header d-flex flex-row align-items-center">
                     <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
                     <div class="tabs-container" id="navbarNavAltMarkup">
@@ -240,7 +243,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
-                        <div class="modal-body">
+                        <div class="modal-body" id="view-entry-modal-body">
                             
                         </div>
 
