@@ -25,11 +25,16 @@
                 console.log(responseJSON)
 
                 for(let i = 0; i < responseJSON.length; i++){
-                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><button class="btn btn-primary">View</button><button class="btn btn-primary">Edit</button>'
+                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><button onclick="viewEntry(\'' + responseJSON[i].image.data +'\',\'' + responseJSON[i].text.Title +'\',\'' + responseJSON[i].text.Description + '\',\'' + responseJSON[i].text.WhatHappened + '\')" class="btn btn-primary">View</button><button class="btn btn-primary">Edit</button>'
                     element.innerHTML += entryComponent
                 }
                 
             }
+
+            function viewEntry(imageData, title, description, whatHappened){
+                $('#view-entry-modal').modal('toggle')
+            }
+
 
             document.addEventListener('DOMContentLoaded', (event) => {                
                 // button in bottom right corner 
@@ -97,6 +102,7 @@
                         });
 
                         $('#add-entry-modal').modal('toggle')
+                        loadEntries(document.getElementById('entry-grid'));
                     });
 
 
@@ -207,6 +213,25 @@
                 </div>
                 </div>
             </div>
+
+            <!--View Entry Modal-->
+            <div class="modal fade" id="view-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                        <h5 class="modal-title" id="add-entry-modal-title">View Entry</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        </div>
+                        <div class="modal-body">
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
 
             <div class="d-flex flex-row" style="flex-grow: 1;">
                 <div class="d-flex flex-column" style="flex-grow: 1; flex-basis: 75%;">
