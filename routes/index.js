@@ -22,12 +22,31 @@ router.post('/submit-login', (req, res) => {
     DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
         if (results.length === 1 && results[0].Password !== '') {
             req.session.userEmail = email;
-            //res.send(req.session.userEmail);
             loginSuccess = true;
         } 
         
         if (loginSuccess) {
             res.status(200).send('LOGIN_SUCCESS');
+        } else {
+            res.status(200).send('LOGIN_FAILED');
+        }
+    });
+});
+
+router.post('/submit-api-login', (req, res) => {
+    email = req.body.Email;
+    password = req.body.Password;
+
+    let loginSuccess = false;
+ 
+    DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
+        if (results.length === 1 && results[0].Password !== '') {
+            req.session.userEmail = email;
+            loginSuccess = true;
+        } 
+        
+        if (loginSuccess) {
+            res.status(200).send(res.cookies);
         } else {
             res.status(200).send('LOGIN_FAILED');
         }
