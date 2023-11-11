@@ -13,31 +13,32 @@ router.get('/', (req, res) => {
 });
 
 
-router.post('/update-user-email', (req, res) => {
-    if (!req.session.userEmail) {
-        return res.status(401).send('Not authenticated');
-    }
-
+router.get('/get-user-email', (req, res) => {
     const userEmail = req.session.userEmail;
-    res.status(200).send(userEmail);
+    console.log(userEmail);
+    const responseObj = {email: userEmail, message:'User Email Updated' }
+    res.status(200).send(responseObj);
 });
 
 router.post('/delete-user-account', (req, res) => {
-    if (!req.session.userEmail) {
-        return res.status(401).send('Not authenticated');
-    }
-
     const userEmail = req.session.userEmail;
+    console.log('This is the user email: ', userEmail);
     DBHelper.DeleteUserDB('Login', 'Users', {Email: userEmail}, (result) =>{
+        console.log(result);
         if(result)
         {
-            console.log(result);
-            res.status(201).send('USER_DELETED');
-        }
-        else
+            req.session.destroy((err) => {
+                if (err) {
+                    console.error(err);
+                    res.status(500).send('SESSION_DESTROY_FAILED');
+                } else {
+                    res.status(200).send('USER_DELETED');
+                }
+            });
+        } 
+        else 
         {
-            console.log('ERROR OCCURRED');
-            res.status(402).send('USER_ERROR');
+            res.status(500).send('NO_USER_TO_DELETE');
         }
     })
 });

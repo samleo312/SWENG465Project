@@ -15,6 +15,11 @@ app.use(sessions({
     resave: false
   }));
 
+app.use((req, res, next) => {
+    console.log('Session data:', req.session);
+    next();
+});
+
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
 });
@@ -33,7 +38,8 @@ router.get('/get-user-login', (req, res) =>{
         } 
         
         if (loginSuccess) {
-            res.status(200).send('LOGIN_SUCCESS');
+            console.log('this is the session', req.session)
+            res.status(200).send(req.session.id);
         } else {
             
             res.status(401).send('LOGIN_FAILED');

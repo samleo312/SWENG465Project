@@ -48,8 +48,8 @@
                     const currentUserEmail = document.getElementById('email');
                     currentUserEmail.style.display = 'none';
                     spinner.style.display = 'block';
-                    const response = await fetch('/account/update-user-email', {
-                        method: 'POST',
+                    const response = await fetch('/account/get-user-email', {
+                        method: 'GET',
                         headers:{
                             'Content-Type': 'application/json'
                         },
@@ -58,15 +58,22 @@
                     spinner.style.display = 'none';
                     currentUserEmail.style.display = 'block';
 
-                    const emailResponseText =  await response.text();
+                    const emailResponseData =  await response.json();
     
-                    console.log(emailResponseText);
-                    currentUserEmail.textContent = `Email: ${emailResponseText}`;
+                    console.log(emailResponseData);
+                    currentUserEmail.textContent = `Email: ${emailResponseData.email}`;
                 });
 
                 const deleteLine = document.getElementById('delete-acc')
-                deleteLine.addEventListener('click', () => {
-                    $('#delete-acc-modal').modal('toggle')
+                deleteLine.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    $('#delete-acc-modal').modal('toggle');
+                });
+
+                const cancelBtn = document.getElementById('cancel-btn');
+                cancelBtn.addEventListener('click', (e) =>{
+                    e.preventDefault();
+                    $('#delete-acc-modal').modal('toggle');
                 });
 
                 const actuallyDeleteAccBtn = document.getElementById('permanent-delete');
@@ -80,13 +87,17 @@
                         },
                     });
 
-                    if(response.text() === 'USER_DELETED')
+                    const responseText = await response.text();
+
+                    console.log(responseText);
+
+                    if(responseText === 'USER_DELETED')
                     {
                         window.location = "http://localhost:3000/";
                     }
                     else
                     {
-                        console.log(response.text());
+                        console.log(responseText);
                     }
                 })
              });
@@ -155,7 +166,7 @@
                     <div class="modal-body">
                         <div>
                             <button id="permanent-delete" class="btn btn-primary">Delete</button>
-                            <button class="btn btn-primary">Cancel</button>  
+                            <button id="cancel-btn" class="btn btn-primary">Cancel</button>  
                         </div>
                     </div>
 
