@@ -43,9 +43,11 @@
 
             function viewEntry(imageData, title, description, whatHappened){
                 $('#view-entry-modal').modal('toggle')
+                modalTitle= document.getElementById('view-entry-modal-title')
                 modalBody = document.getElementById('view-entry-modal-body')
 
-                modalBody.innerHTML = '<h5>'+ title + '</h5> <img src="data:image/png;base64,'+ imageData + '" alt="Card image cap"> <h5>'+ description + '</h5> <h5>'+ whatHappened + '</h5>'
+                modalTitle.innerHTML = '<h5>' + title + '</h5>'
+                modalBody.innerHTML = '<div class="d-flex flex-column"> <img style="height: 500px; margin: 0px; width: 100%" src="data:image/png;base64,'+ imageData + '" alt="Card image cap"> <h5>Description:</h5><p1>'+ description + '</p1> <h5>What Happened:</h5><p1>'+ whatHappened + '</p1></div>'
             }
 
 
@@ -160,7 +162,7 @@
 
     <body>
         <div class="d-flex flex-column" style="height: 100vh;">
-            <nav class="header navbar navbar-expand-lg" style="justify-content: space-between; max-height: min-content;">
+            <nav class="header navbar navbar-expand-lg" style="justify-content: space-between; flex-grow: 0;">
                 <div class="left-side-header d-flex flex-row align-items-center">
                     <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
                     <div class="tabs-container" id="navbarNavAltMarkup">
@@ -235,10 +237,10 @@
 
             <!--View Entry Modal-->
             <div class="modal fade" id="view-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                    <div class="modal-content">
+                <div class="modal-dialog modal-dialog-centered" style="max-width: 95%;" role="document">
+                    <div class="modal-content" style="max-width: 100%;">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="add-entry-modal-title">View Entry</h5>
+                        <h5 class="modal-title" id="view-entry-modal-title">View Entry</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
