@@ -25,7 +25,7 @@
                 console.log(responseJSON)
                 element.innerHTML = ''
                 for(let i = 0; i < responseJSON.length; i++){
-                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><button onclick="viewEntry(\'' + responseJSON[i].image.data +'\',\'' + responseJSON[i].text.Title +'\',\'' + responseJSON[i].text.Description + '\',\'' + responseJSON[i].text.WhatHappened + '\')" class="btn btn-primary">View</button><button class="btn btn-primary">Edit</button>'
+                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" style="height: 200px;" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><div class="d-flex" style="justify-content: space-between"><div class="d-flex"><button onclick="viewEntry(\'' + responseJSON[i].image.data +'\',\'' + responseJSON[i].text.Title +'\',\'' + responseJSON[i].text.Description + '\',\'' + responseJSON[i].text.WhatHappened + '\')" class="btn btn-primary" style="margin-right: 5px">View</button><button class="btn btn-primary">Edit</button></div><button class="btn btn-primary">Delete</button></div>'
                     element.innerHTML += entryComponent
                 }
                 
@@ -47,7 +47,7 @@
                 modalBody = document.getElementById('view-entry-modal-body')
 
                 modalTitle.innerHTML = '<h5>' + title + '</h5>'
-                modalBody.innerHTML = '<div class="d-flex flex-column"> <img style="height: 500px; margin: 0px; width: 100%" src="data:image/png;base64,'+ imageData + '" alt="Card image cap"> <h5>Description:</h5><p1>'+ description + '</p1> <h5>What Happened:</h5><p1>'+ whatHappened + '</p1></div>'
+                modalBody.innerHTML = '<div class="d-flex flex-column"> <img style="maxwidth: 500px; maxheight:300px; width: auto; height: auto" src="data:image/png;base64,'+ imageData + '" alt="Card image cap"> <h5>Description:</h5><p1>'+ description + '</p1> <h5>What Happened:</h5><p1>'+ whatHappened + '</p1></div>'
             }
 
 
@@ -161,6 +161,7 @@
     </head>
 
     <body>
+        
         <div class="d-flex flex-column" style="height: 100vh;">
             <nav class="header navbar navbar-expand-lg" style="justify-content: space-between; flex-grow: 0;">
                 <div class="left-side-header d-flex flex-row align-items-center">
@@ -194,137 +195,138 @@
                     </div>
                 </div>
             </nav>
-            
-            <!--Add Entry Modal-->
-            <div class="modal fade" id="add-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title" id="add-entry-modal-title">Add a Journal Entry</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                        <div>
-                            <form id="add-entry-form">
-                                <div class="form-group">
-                                  <label for="title-text">Title:</label>
-                                  <input type="text" id="title-text" name="title" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <label for="description-text">Description:</label>
-                                  <input type="text" id="description-text" name="description" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                  <label for="what-happened-text">What Happened? :</label>
-                                  <textarea id="what-happened-text" name="whatHappened" rows="4" class="form-control"></textarea>
-                                </div>
-                                <div class="form-group">
-                                  <label for="picture-upload">Upload a picture:</label>
-                                  <input type="file" id="picture-upload" name="picture" accept="image/*" class="form-control-file">
-                                </div>
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" id="save-entry-button" class="btn btn-primary">Save changes</button>
-                            </form>
-                              
-                        </div>
-                    </div>
-
-                </div>
-                </div>
-            </div>
-
-            <!--View Entry Modal-->
-            <div class="modal fade" id="view-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
-                <div class="modal-dialog modal-dialog-centered" style="max-width: 95%;" role="document">
-                    <div class="modal-content" style="max-width: 100%;">
+            <div class="d-flex flex-column translucent-form-overlay justify-content-center">        
+                <!--Add Entry Modal-->
+                <div class="modal fade" id="add-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
                         <div class="modal-header">
-                        <h5 class="modal-title" id="view-entry-modal-title">View Entry</h5>
+                        <h5 class="modal-title" id="add-entry-modal-title">Add a Journal Entry</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         </div>
-                        <div class="modal-body" id="view-entry-modal-body">
-                            
+                        <div class="modal-body">
+                            <div>
+                                <form id="add-entry-form">
+                                    <div class="form-group">
+                                    <label for="title-text">Title:</label>
+                                    <input type="text" id="title-text" name="title" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="description-text">Description:</label>
+                                    <input type="text" id="description-text" name="description" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="what-happened-text">What Happened? :</label>
+                                    <textarea id="what-happened-text" name="whatHappened" rows="4" class="form-control"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                    <label for="picture-upload">Upload a picture:</label>
+                                    <input type="file" id="picture-upload" name="picture" accept="image/*" class="form-control-file">
+                                    </div>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" id="save-entry-button" class="btn btn-primary">Save changes</button>
+                                </form>
+                                
+                            </div>
                         </div>
 
                     </div>
+                    </div>
                 </div>
-            </div>
 
+                <!--View Entry Modal-->
+                <div class="modal fade" id="view-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
+                    <div class="modal-dialog modal-dialog-centered" style="max-width: 95%;" role="document">
+                        <div class="modal-content" style="max-width: 100%;">
+                            <div class="modal-header">
+                            <h5 class="modal-title" id="view-entry-modal-title">View Entry</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                            <div class="modal-body" id="view-entry-modal-body">
+                                
+                            </div>
 
-            <div class="d-flex flex-row" style="flex-grow: 1;">
-                <div class="d-flex flex-column" style="flex-grow: 1; flex-basis: 75%;">
-                    <div id='entry-grid' class="card-grid">
-                        <!-- Example 1 -->
-                        <div class="card d-flex">
-                            <img id="card-img1" class="card-img-top" src="example1.jpg" alt="Card image cap">
-                            <!-- Modal div to be opened for enlarged picture -->
-                            <div id="modal1" class="modal">
-                                <span class="close" id="close-modal">&times;</span>
-                                <img class="modal-content" id="img01">
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p>
-                                <a href="#" class="btn btn-primary">View</a>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                            </div>
-                        </div>
-
-                        <!-- Example 2 -->
-                        <div class="card d-flex">
-                            <img class="card-img-top" src="example2.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title again</h5>
-                                <p class="card-text">This is another journal entry with a different image and caption.</p>
-                                <a href="#" class="btn btn-primary">View</a>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                            </div>
-                        </div>
-
-                        <!-- Example 3 -->
-                        <div class="card d-flex">
-                            <img class="card-img-top" src="example3.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Vertical img test</h5>
-                                <p class="card-text">Another test entry</p>
-                                <a href="#" class="btn btn-primary">View</a>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                            </div>
-                        </div>
-
-                        <!-- Example 4 -->
-                        <div class="card d-flex">
-                            <img class="card-img-top" src="example4.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Really really really really long title test</h5>
-                                <p class="card-text">hi</p>
-                                <a href="#" class="btn btn-primary">View</a>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                            </div>
-                        </div>
-
-                        <!-- Example 5 -->
-                        <div class="card d-flex">
-                            <img class="card-img-top" src="example5.jpg" alt="Card image cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Vertical img test2</h5>
-                                <p class="card-text">Lorem ipsum blah blah asnkdfkjsnfkjasnfkj trying to make a long description
-                                    and trying to think of something to say Idk lol
-                                    (martin please give us A)
-                                </p>
-                                <a href="#" class="btn btn-primary">View</a>
-                                <a href="#" class="btn btn-primary">Edit</a>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <!--TODO: GET AN SVG ICONS LIBRARY OF SOME KIND MAYBE. TRIED USING PNGS FOR LITTLE ICONS SUCH AS PLUS SIGN (ADD), PENCIL (EDIT), DELETE (TRASH CAN), BUT IT LOOKS LIKE HOT GARBAGE-->
-                <div class="upload-btn-container d-flex flex-column" style="flex-grow: 1; flex-basis: 25%;">
-                    <!-- The button to open the upload menu -->
-                    <button type="button" id="sticky-upload-btn" class="btn btn-primary btn-lg rounded-circle">+</button>
+
+
+                <div class="d-flex flex-row" style="flex-grow: 1;">
+                    <div class="d-flex flex-column" style="flex-grow: 1; flex-basis: 75%;">
+                        <div id='entry-grid' class="card-grid">
+                            <!-- Example 1 -->
+                            <div class="card d-flex">
+                                <img id="card-img1" class="card-img-top" src="example1.jpg" alt="Card image cap">
+                                <!-- Modal div to be opened for enlarged picture -->
+                                <div id="modal1" class="modal">
+                                    <span class="close" id="close-modal">&times;</span>
+                                    <img class="modal-content" id="img01">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title</h5>
+                                    <p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p>
+                                    <a href="#" class="btn btn-primary">View</a>
+                                    <a href="#" class="btn btn-primary">Edit</a>
+                                </div>
+                            </div>
+
+                            <!-- Example 2 -->
+                            <div class="card d-flex">
+                                <img class="card-img-top" src="example2.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Card title again</h5>
+                                    <p class="card-text">This is another journal entry with a different image and caption.</p>
+                                    <a href="#" class="btn btn-primary">View</a>
+                                    <a href="#" class="btn btn-primary">Edit</a>
+                                </div>
+                            </div>
+
+                            <!-- Example 3 -->
+                            <div class="card d-flex">
+                                <img class="card-img-top" src="example3.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Vertical img test</h5>
+                                    <p class="card-text">Another test entry</p>
+                                    <a href="#" class="btn btn-primary">View</a>
+                                    <a href="#" class="btn btn-primary">Edit</a>
+                                </div>
+                            </div>
+
+                            <!-- Example 4 -->
+                            <div class="card d-flex">
+                                <img class="card-img-top" src="example4.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Really really really really long title test</h5>
+                                    <p class="card-text">hi</p>
+                                    <a href="#" class="btn btn-primary">View</a>
+                                    <a href="#" class="btn btn-primary">Edit</a>
+                                </div>
+                            </div>
+
+                            <!-- Example 5 -->
+                            <div class="card d-flex">
+                                <img class="card-img-top" src="example5.jpg" alt="Card image cap">
+                                <div class="card-body">
+                                    <h5 class="card-title">Vertical img test2</h5>
+                                    <p class="card-text">Lorem ipsum blah blah asnkdfkjsnfkjasnfkj trying to make a long description
+                                        and trying to think of something to say Idk lol
+                                        (martin please give us A)
+                                    </p>
+                                    <a href="#" class="btn btn-primary">View</a>
+                                    <a href="#" class="btn btn-primary">Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--TODO: GET AN SVG ICONS LIBRARY OF SOME KIND MAYBE. TRIED USING PNGS FOR LITTLE ICONS SUCH AS PLUS SIGN (ADD), PENCIL (EDIT), DELETE (TRASH CAN), BUT IT LOOKS LIKE HOT GARBAGE-->
+                    <div class="upload-btn-container d-flex flex-column" style="flex-grow: 1; flex-basis: 25%;">
+                        <!-- The button to open the upload menu -->
+                        <button type="button" id="sticky-upload-btn" class="btn btn-primary btn-lg rounded-circle">+</button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -268,7 +268,7 @@ body{
 /* Card grid styling */
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 columns in a row */
+    grid-template-columns: repeat(auto-fill, minmax(300px,1fr)); /* 3 columns in a row */
     gap: 10px; /* Adjust the gap between grid items */
     padding: 10px;
 }
@@ -299,3 +299,19 @@ body{
 .card.active .card-text {
     display: block;
 }
+
+body {
+    background: url('forest.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.translucent-form-overlay {
+    position: relative;
+    background-color: rgba(0,0,0,0.6);
+    width: 100%;
+    height: 100vh;
+    padding-top: 30px;
+}
+
