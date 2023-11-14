@@ -30,9 +30,19 @@ router.post('/load-entries', (req, res) => {
 });
 
 router.post('/log-out', (req, res) => {
-  req.session.destroy(function(err) {
-    console.log(err);
-  });
+  if (!req.session) {
+    res.status(500).send('LOGOUT_FAILED');
+    return;
+  } else {
+    req.session.destroy(function(err) {
+      console.log(err);
+      res.status(500).send('LOGOUT_FAILED');
+      return;
+    });
+
+    res.status(200).send('LOGOUT_SUCCESS');
+    return;
+  }
 });
 
 const handleError = (err, res) => {

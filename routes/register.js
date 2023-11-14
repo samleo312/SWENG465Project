@@ -1,19 +1,18 @@
+require('dotenv').config();
 const express = require('express');
 const router = express.Router();
 const path = require('path');
+const sha256 = require('sha256');
 var app = express();
 const DBHelper = require("../util/DBHelper");
-
-
 
 router.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../', 'views', 'register.html'));
 });
 
-//TODO: Store date that user registers on, that way "Journey Started On:" date is correct in Account info"
 router.post('/submit-registration', (req, res) => {
     email = req.body.Email;
-    password = req.body.Password;
+    password = sha256(process.env.PRESALT + req.body.Password + process.env.POSTSALT);
     joinDate = Date().toString().slice(0, 15);
 
     console.log('waiting for the DB...');
@@ -33,4 +32,4 @@ router.post('/submit-registration', (req, res) => {
     
 });
 
-module.exports = router
+module.exports = router;

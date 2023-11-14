@@ -2,6 +2,7 @@ require('dotenv').config();
 const Toastify = require( 'toastify-js' );
 const express = require('express');
 const sessions = require('express-session');
+const sha256 = require('sha256');
 const app = express();
 const router = express.Router();
 const path = require('path');
@@ -37,6 +38,7 @@ router.get('/get-user-login', (req, res) =>{
 
 router.post('/submit-login', (req, res) => {
     email = req.body.Email;
+    //password = sha256(process.env.PRESALT + req.body.Password + process.env.POSTSALT);
     password = req.body.Password;
 
     let loginSuccess = false;
@@ -55,9 +57,9 @@ router.post('/submit-login', (req, res) => {
     });
 });
 
-router.post('/submit-api-login', (req, res) => {
+router.post('/authenticate', (req, res) => {
     email = req.body.Email;
-    password = req.body.Password;
+    password = sha256(process.env.PRESALT + req.body.Password + process.env.POSTSALT);
 
     let loginSuccess = false;
  
