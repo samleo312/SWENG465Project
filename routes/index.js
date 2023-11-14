@@ -26,8 +26,7 @@ router.get('/get-user-login', (req, res) =>{
         } 
         
         if (loginSuccess) {
-            console.log('this is the session', req.session)
-            res.status(200).send(req.session.id);
+            res.status(200).send('LOGIN_SUCCESS');
         } else {
             
             res.status(401).send('LOGIN_FAILED');
@@ -71,27 +70,7 @@ router.post('/submit-api-login', (req, res) => {
         if (loginSuccess) {
             res.status(200).send(res.cookies);
         } else {
-            res.status(200).send('LOGIN_FAILED');
-        }
-    });
-});
-
-router.post('/submit-api-login', (req, res) => {
-    email = req.body.Email;
-    password = req.body.Password;
-
-    let loginSuccess = false;
- 
-    DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
-        if (results.length === 1 && results[0].Password !== '') {
-            req.session.userEmail = email;
-            loginSuccess = true;
-        } 
-        
-        if (loginSuccess) {
-            res.status(200).send(res.cookies);
-        } else {
-            res.status(200).send('LOGIN_FAILED');
+            res.status(401).send('LOGIN_FAILED');
         }
     });
 });
