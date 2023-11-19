@@ -1,4 +1,6 @@
 const { MongoClient, ServerApiVersion } = require("mongodb");
+const ObjectId = require('mongodb').ObjectId;
+
 const url = process.env.MONGO_URL;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -25,6 +27,20 @@ async function InsertDB(db, collection, document, callback){
     callback(result);
 }
 
+async function DeleteDBText(entryId, callback){
+    console.log('waiting for DELETE...');
+    result = await client.db('Entries').collection('text').deleteOne({_id: new ObjectId(entryId)})
+    console.log('DELETE Ran')
+    callback(result)
+}
+
+async function DeleteDBImage(entryId, callback){
+  console.log('waiting for DELETE...');
+  result = await client.db('Entries').collection('images').deleteOne({entryId: entryId})
+  console.log('DELETE Ran')
+  callback(result)
+}
+
 async function DeleteUserDB(db, collection, user, callback){
   console.log('waiting for DELETE...');
   result = await client.db(db).collection(collection).deleteOne(user);
@@ -49,5 +65,7 @@ run().catch(console.dir);
 module.exports = {
   QueryDB, 
   InsertDB,
+  DeleteDBText,
+  DeleteDBImage,
   DeleteUserDB
 }

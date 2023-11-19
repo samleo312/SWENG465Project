@@ -29,6 +29,20 @@ router.post('/load-entries', (req, res) => {
 
 });
 
+router.post('/delete-entry', (req, res) => {
+  let entryId = req.body.entryId
+
+  DBHelper.DeleteDBText(entryId, (results) => {
+    console.log('DELETE_TEXT_SUCESS')
+  });
+  DBHelper.DeleteDBImage(entryId, (results) => {
+    console.log('DELETE_IMAGE_SUCESS')
+  });
+
+  res.send('DELETE_SUCCESS')
+});
+
+
 router.post('/log-out', (req, res) => {
   if (!req.session) {
     res.status(500).send('LOGOUT_FAILED');
@@ -99,6 +113,7 @@ upload.single("picture"),
             entryId: textBody._id
           });
 
+          console.log(imageInstance)
           imageInstance.save()
           res.send("PHOTO_UPLOAD_SUCCESSFUL")
 
