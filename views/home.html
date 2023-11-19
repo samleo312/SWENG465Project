@@ -25,7 +25,7 @@
                 console.log(responseJSON)
                 element.innerHTML = ''
                 for(let i = 0; i < responseJSON.length; i++){
-                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" style="height: 200px;" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><div class="d-flex" style="justify-content: space-between"><div class="d-flex"><button onclick="viewEntry(\'' + responseJSON[i].image.data +'\',\'' + responseJSON[i].text.Title +'\',\'' + responseJSON[i].text.Description + '\',\'' + responseJSON[i].text.WhatHappened + '\')" class="btn btn-primary" style="margin-right: 5px">View</button><button class="btn btn-primary">Edit</button></div><button class="btn btn-primary">Delete</button></div>'
+                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" style="height: 200px;" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><div class="d-flex" style="justify-content: space-between"><div class="d-flex"><button onclick="viewEntry(\'' + responseJSON[i].image.data +'\',\'' + responseJSON[i].text.Title +'\',\'' + responseJSON[i].text.Description + '\',\'' + responseJSON[i].text.WhatHappened + '\')" class="btn btn-primary" style="margin-right: 5px">View</button><button class="btn btn-primary">Edit</button></div><button class="btn btn-primary" onclick="deleteEntry(\''+ responseJSON[i].text._id +'\')">Delete</button></div>'
                     element.innerHTML += entryComponent
                 }
                 
@@ -48,6 +48,21 @@
 
                 modalTitle.innerHTML = '<h5>' + title + '</h5>'
                 modalBody.innerHTML = '<div class="d-flex flex-column"> <img style="maxwidth: 500px; maxheight:300px; width: auto; height: auto" src="data:image/png;base64,'+ imageData + '" alt="Card image cap"> <h5>Description:</h5><p1>'+ description + '</p1> <h5>What Happened:</h5><p1>'+ whatHappened + '</p1></div>'
+            }
+
+            async function deleteEntry(entryId){
+                let body = {
+                    'entryId': entryId.toString()
+                }
+                const response = await fetch('/home/delete-entry', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(body),
+                });
+
+                loadEntries(document.getElementById('entry-grid'))
             }
 
 
