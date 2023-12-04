@@ -1,104 +1,77 @@
-<!DOCTYPE html>
-<base href="/">
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SWENG465PROJECT</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="feed.css">
-
-        <script>
-             document.addEventListener('DOMContentLoaded', (event) => {
-                const accountIconClick = document.getElementById('account-clickable-icon');
-                const accountPopup = document.getElementById('account-popup');
-
-                // Toggle account menu visibility
-                accountIconClick.addEventListener('click', () => {
-                    if (accountPopup.classList.contains('open')) {
-                        accountPopup.classList.remove('open');
-                    } else {
-                        accountPopup.classList.add('open');
-                    }
-                    // also close when scrolling
-                    document.addEventListener('scroll', (event) =>{
-                        if (accountPopup.classList.contains('open')) {
-                            accountPopup.classList.remove('open');
-                        }
-                    });
-                });
-
-                document.addEventListener('click', (event) => {
-                    if (!accountIconClick.contains(event.target) && !accountPopup.contains(event.target)) {
-                        if (accountPopup.classList.contains('open')) {
-                            accountPopup.classList.remove('open');
-                        }
-                    }
-                    console.log(window.location.search);
-                });
-
-                document.getElementById('home-link').href = '/home/' + window.location.search;
-                document.getElementById('about-us-link').href = '/about-us/' + window.location.search;
-                document.getElementById('go-to-account').href = '/account/' + window.location.search;
-                document.getElementById('go-to-settings').href = '/home/' + window.location.search; // just goes home for now
-                document.getElementById('feed-link').href = '/feed/' + window.location.search;
-             });
-        </script>
-    </head>
-    <body>
-        <div class="content-pane d-flex flex-column justify-content-start gap-md-3">
-            <nav class="header navbar navbar-expand-lg" style="justify-content: space-between;">
-                <div class="left-side-header d-flex flex-row align-items-center">
-                    <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
-                    <div class="tabs-container" id="navbarNavAltMarkup">
-                        <div class="tabs tab-margins d-flex flex-row justify-content-between" style="text-decoration: none;">
-                            <a id='home-link' class="home-link" href="/home">Home</a>
-                            <a id='feed-link' class="feed-link" href="/feed">Feed</a>
-                            <a id='about-us-link'class="about-us-link" href="/about-us">About</a>
-                        </div>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        SWENG465PROJECT
+    </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="feed.css">
+</head>
+<body>
+    <nav class="header navbar navbar-expand-lg" style="justify-content: space-between; flex-grow: 0;">
+        <div class="left-side-header d-flex flex-row align-items-center">
+            <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
+            <div class="tabs-container" id="navbarNavAltMarkup">
+                <div class="tabs tab-margins d-flex flex-row justify-content-between" style="text-decoration: none;">
+                    <a id='home-link' class="home-link" href="/home">Home</a>
+                    <a id='feed-link' class="feed-link" href="/feed">Feed</a>
+                    <a id='about-us-link'class="about-us-link" href="/about-us">About</a>
+                </div>
+            </div>
+        </div>
+        <div class="account-popup-container">
+            <!-- Icon essentially acts as a clickable icon with the javascript DOM manipulation -->
+            <div id="account-clickable-icon" class="account-clickable-icon">
+                <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
+            </div>
+            <div id="account-popup" class="account-popup">
+                <ul>
+                    <li>
+                        <a id="go-to-account"  class="" href="/account">Account</a>
+                    </li>
+                    <li>
+                        <!-- Settings page not existing yet -->
+                        <a id="go-to-settings" class="" href="/home">Settings</a>
+                    </li>
+                    <li>
+                        <a id="sign-out" class="" href="/">Sign Out</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="translucent-form-overlay">
+        <div class="container">
+            <div class="feed" id="post-list">
+                <div class="post">
+                    <img src="avatar1.jpg" class="avatar" alt="Avatar of John Doe">
+                    <div class="content">
+                        <div class="author">John Doe</div>
+                        <div class="date">December 4, 2023</div>
+                        <div class="text">Today I went to the park with my dog and we had a lot of fun. He loves to chase the squirrels and play fetch with his favorite ball. Here is a picture of him enjoying the sun.</div>
+                        <img src="image1.jpg" class="image" alt="Image of a dog in the park">
                     </div>
                 </div>
-                <div class="account-popup-container">
-                    <!-- Icon essentially acts as a clickable icon with the javascript DOM manipulation -->
-                    <div id="account-clickable-icon" class="account-clickable-icon">
-                        <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
-                    </div>
-                    <div id="account-popup" class="account-popup">
-                        <ul>
-                            <li>
-                                <a id="go-to-account"  class="" href="/account">Account</a>
-                            </li>
-                            <li>
-                                <!-- Settings page not existing yet -->
-                                <a id="go-to-settings" class="" href="/home">Settings</a>
-                            </li>
-                            <li>
-                                <a id="sign-out" class="" href="/">Sign Out</a>
-                            </li>
-                        </ul>
+                <div class="post">
+                    <img src="avatar2.jpg" class="avatar" alt="Avatar of Jane Smith">
+                    <div class="content">
+                        <div class="author">Jane Smith</div>
+                        <div class="date">December 3, 2023</div>
+                        <div class="text">I just finished reading a great book called "The Art of Happiness". It's written by a psychologist and a Buddhist monk and it explores the ways to achieve happiness in life. I learned a lot from it and I highly recommend it to anyone who is looking for some inspiration and guidance.</div>
                     </div>
                 </div>
-            </nav>
-
-            <div class="main-content-container d-flex flex-row align-items-start">
-                <div class="friends-panel">
-                    These are friends
-                </div>
-
-                <div class="scrolling-feed-panel d-flex flex-column justify-content-start align-items-start">
-                    <div class="card d-flex flex-column justify-content-between">
-                        <div class="pfp d-flex flex-row justify-content-start">
-                            <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
-                            <p>username</p>
-                        </div>
-                        <div class="content"> content </div>
-                        <div class="settings"> settings (like clicking links)</div>
+                <div class="post">
+                    <img src="avatar3.jpg" class="avatar" alt="Avatar of Bob Lee">
+                    <div class="content">
+                        <div class="author">Bob Lee</div>
+                        <div class="date">December 2, 2023</div>
+                        <div class="text">I just got back from a trip to New York City and it was amazing. I saw the Statue of Liberty, the Empire State Building, the Central Park, and many other famous landmarks. I also enjoyed the food, the culture, and the nightlife. It was a memorable experience and I can't wait to go back.</div>
+                        <img src="image2.jpg" class="image" alt="Image of New York City skyline">
                     </div>
                 </div>
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
+    </div>
+</body>
 </html>

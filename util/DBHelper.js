@@ -27,6 +27,13 @@ async function InsertDB(db, collection, document, callback){
     callback(result);
 }
 
+async function EditDBText(entryId, newDoc, callback){
+  console.log('waiting for UPDATE...');
+  result = await client.db('Entries').collection('text').updateOne({_id: new ObjectId(entryId)}, {$set: newDoc})
+  console.log('UPDATE Ran')
+  callback(result)
+}
+
 async function DeleteDBText(entryId, callback){
     console.log('waiting for DELETE...');
     result = await client.db('Entries').collection('text').deleteOne({_id: new ObjectId(entryId)})
@@ -67,5 +74,6 @@ module.exports = {
   InsertDB,
   DeleteDBText,
   DeleteDBImage,
-  DeleteUserDB
+  DeleteUserDB,
+  EditDBText
 }
