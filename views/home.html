@@ -171,23 +171,23 @@
                     }
                 }
 
-                let lastScrollTop = 0; // Variable to store the last scroll position
-                const overlayPane = document.getElementById('translucent-overlay-container');
+                const translucentOverlay = document.getElementById('translucent-overlay-container');
+                const navbar = document.getElementById('navbar');
+                let lastScrollTop = 0;
 
-                overlayPane.addEventListener("click", function() {
-                    let currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-                    let navbar = document.getElementById('navbar');
+                translucentOverlay.addEventListener('scroll', function() {
+                    let currentScroll = translucentOverlay.scrollTop;
 
                     if (currentScroll > lastScrollTop) {
-                    // Scroll Down
-                    navbar.classList.add("hide-nav");
+                        // Scroll Down
+                        navbar.classList.add('hide-nav');
                     } else {
-                    // Scroll Up
-                    navbar.classList.remove("hide-nav");
+                        // Scroll Up
+                        navbar.classList.remove('hide-nav');
                     }
 
-                    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // For Mobile or negative scrolling
-                }, false);
+                    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+                });
             });
 
         </script>
