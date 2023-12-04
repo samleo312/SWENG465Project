@@ -1,8 +1,16 @@
 /* Styles the body to take up the whole viewheight and viewwidth */
-body{
+/*Note for me: remove first three lines (pasted below) to get img to show.. I think the img sits behind everything*/
+/*
     margin: 0;
     height: 100vh;
     width: 100vw;
+*/
+body{
+    background: url('forest.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 
 /* adjustable content pane to hold the page contents */
@@ -16,7 +24,7 @@ body{
 
 /* Header just holds the title and tabs */
 .header{
-    background-color: #186F65;
+    background-color: #496146;
     height: 10%;
     width: 100%;
     padding: 12px;
@@ -156,7 +164,6 @@ body{
     width: 80%;
     height: 100%;
     padding: 2rem;
-
 }
 
 .card{

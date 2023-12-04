@@ -39,7 +39,6 @@ router.get('/get-user-login', (req, res) =>{
 router.post('/submit-login', (req, res) => {
     email = req.body.Email;
     password = sha256(process.env.PRESALT + req.body.Password + process.env.POSTSALT);
-    //password = req.body.Password;
 
     let loginSuccess = false;
  
@@ -60,7 +59,6 @@ router.post('/submit-login', (req, res) => {
 router.post('/authenticate', (req, res) => {
     email = req.body.Email;
     password = sha256(process.env.PRESALT + req.body.Password + process.env.POSTSALT);
-    //password = req.body.Password;
     let loginSuccess = false;
  
     DBHelper.QueryDB("Login", "Users", {Email: email, Password: password}, (results) => {
@@ -77,4 +75,4 @@ router.post('/authenticate', (req, res) => {
     });
 });
 
-module.exports = router
+module.exports = router;
