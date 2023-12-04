@@ -42,6 +42,14 @@ router.post('/delete-entry', (req, res) => {
   res.send('DELETE_SUCCESS')
 });
 
+//router.post('/edit-entry', (req, res) => {
+//  let entryId = req.body.entryId
+//
+ // DBHelper.EditDBText(entryId, text, (results) => {
+
+//  });
+
+//});
 
 router.post('/log-out', (req, res) => {
   if (!req.session) {

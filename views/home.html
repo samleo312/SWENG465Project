@@ -25,7 +25,7 @@
                 console.log(responseJSON)
                 element.innerHTML = ''
                 for(let i = 0; i < responseJSON.length; i++){
-                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" style="height: 200px;" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p><div class="d-flex" style="justify-content: space-between"><div class="d-flex"><button onclick="viewEntry(\'' + responseJSON[i].image.data +'\',\'' + responseJSON[i].text.Title +'\',\'' + responseJSON[i].text.Description + '\',\'' + responseJSON[i].text.WhatHappened + '\')" class="btn btn-primary" style="margin-right: 5px">View</button><button class="btn btn-primary">Edit</button></div><button class="btn btn-primary" onclick="deleteEntry(\''+ responseJSON[i].text._id +'\')">Delete</button></div>'
+                    entryComponent  = '<div class="card d-flex"><img id="card-img1" class="card-img-top" style="height: 200px;" src="data:image/png;base64,'+ responseJSON[i].image.data + '" alt="Card image cap"><div id="modal1" class="modal"><span class="close" id="close-modal">&times;</span><img class="modal-content" id="img01"></div><div class="card-body"><h5 class="card-title">' + responseJSON[i].text.Title + '</h5><div class="d-flex" style="justify-content: space-between"><div class="d-flex"><button onclick="viewEntry(\'' + responseJSON[i].image.data +'\',\'' + responseJSON[i].text.Title +'\',\'' + responseJSON[i].text.Description + '\',\'' + responseJSON[i].text.WhatHappened + '\')" class="btn btn-primary" style="margin-right: 5px">View</button><button class="btn btn-primary" onclick="onclick="editEntry(\''+ responseJSON[i].text._id +'\')"">Edit</button></div><button class="btn btn-primary" onclick="deleteEntry(\''+ responseJSON[i].text._id +'\')">Delete</button></div>'
                     element.innerHTML += entryComponent
                 }
                 
@@ -64,6 +64,10 @@
 
                 loadEntries(document.getElementById('entry-grid'))
             }
+
+            //async function editEntry(entryId){
+
+            //}
 
 
             document.addEventListener('DOMContentLoaded', (event) => {                
@@ -210,7 +214,7 @@
                     </div>
                 </div>
             </nav>
-            <div class=" translucent-form-overlay">        
+            <div class="translucent-form-overlay">        
                 <!--Add Entry Modal-->
                 <div class="modal fade" id="add-entry-modal" tabindex="-1" role="dialog" aria-labelledby="addEntryModal" aria-hidden="true" data-backdrop="false">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -273,68 +277,7 @@
                 <div class="d-flex flex-row" style="flex-grow: 1;">
                     <div class="d-flex flex-column" style="flex-grow: 1; flex-basis: 75%;">
                         <div id='entry-grid' class="card-grid">
-                            <!-- Example 1 -->
-                            <div class="card d-flex">
-                                <img id="card-img1" class="card-img-top" src="example1.jpg" alt="Card image cap">
-                                <!-- Modal div to be opened for enlarged picture -->
-                                <div id="modal1" class="modal">
-                                    <span class="close" id="close-modal">&times;</span>
-                                    <img class="modal-content" id="img01">
-                                </div>
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">This is one journal entry, containing a title as well as an image that the user uploaded when it was created.</p>
-                                    <a href="#" class="btn btn-primary">View</a>
-                                    <a href="#" class="btn btn-primary">Edit</a>
-                                </div>
-                            </div>
-
-                            <!-- Example 2 -->
-                            <div class="card d-flex">
-                                <img class="card-img-top" src="example2.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title again</h5>
-                                    <p class="card-text">This is another journal entry with a different image and caption.</p>
-                                    <a href="#" class="btn btn-primary">View</a>
-                                    <a href="#" class="btn btn-primary">Edit</a>
-                                </div>
-                            </div>
-
-                            <!-- Example 3 -->
-                            <div class="card d-flex">
-                                <img class="card-img-top" src="example3.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Vertical img test</h5>
-                                    <p class="card-text">Another test entry</p>
-                                    <a href="#" class="btn btn-primary">View</a>
-                                    <a href="#" class="btn btn-primary">Edit</a>
-                                </div>
-                            </div>
-
-                            <!-- Example 4 -->
-                            <div class="card d-flex">
-                                <img class="card-img-top" src="example4.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Really really really really long title test</h5>
-                                    <p class="card-text">hi</p>
-                                    <a href="#" class="btn btn-primary">View</a>
-                                    <a href="#" class="btn btn-primary">Edit</a>
-                                </div>
-                            </div>
-
-                            <!-- Example 5 -->
-                            <div class="card d-flex">
-                                <img class="card-img-top" src="example5.jpg" alt="Card image cap">
-                                <div class="card-body">
-                                    <h5 class="card-title">Vertical img test2</h5>
-                                    <p class="card-text">Lorem ipsum blah blah asnkdfkjsnfkjasnfkj trying to make a long description
-                                        and trying to think of something to say Idk lol
-                                        (martin please give us A)
-                                    </p>
-                                    <a href="#" class="btn btn-primary">View</a>
-                                    <a href="#" class="btn btn-primary">Edit</a>
-                                </div>
-                            </div>
+                           
                         </div>
                     </div>
                     <!--TODO: GET AN SVG ICONS LIBRARY OF SOME KIND MAYBE. TRIED USING PNGS FOR LITTLE ICONS SUCH AS PLUS SIGN (ADD), PENCIL (EDIT), DELETE (TRASH CAN), BUT IT LOOKS LIKE HOT GARBAGE-->
