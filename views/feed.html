@@ -7,67 +7,93 @@
     </title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="feed.css">
+
+    <script>
+        async function loadEntries(element){
+                const response = await fetch('/feed/load-feed', {
+                        method: 'POST',
+                        headers:{
+                            'Content-Type': 'application/json'
+                        },
+                        body: '',
+                });
+              
+                let responseJSON = await response.json()
+                console.log(responseJSON)
+                element.innerHTML = ''
+                for(let i = 0; i < responseJSON.length; i++){
+                    let entryComponent = '<div class="post"> <img src="avatar1.jpg" class="avatar" alt="Avatar Picture"> <div class="content"><div class="author">' + responseJSON[i].user + '</div> <div class="text">' + responseJSON[i].Description + '</div> <img src="image1.jpg" class="image" alt="Image not found"> </div> </div>'
+                    element.innerHTML += entryComponent
+                }
+                
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => { 
+            document.getElementById('post-list').innerHTML = '';
+            loadEntries(document.getElementById('post-list'));
+        })
+
+    </script>
 </head>
 <body>
-    <nav class="header navbar navbar-expand-lg" style="justify-content: space-between; flex-grow: 0;">
-        <div class="left-side-header d-flex flex-row align-items-center">
-            <img src="boot.png" width="40" height="40" class="d-inline-block align-top" alt="">
-            <div class="tabs-container" id="navbarNavAltMarkup">
-                <div class="tabs tab-margins d-flex flex-row justify-content-between" style="text-decoration: none;">
-                    <a id='home-link' class="home-link" href="/home">Home</a>
-                    <a id='feed-link' class="feed-link" href="/feed">Feed</a>
-                    <a id='about-us-link'class="about-us-link" href="/about-us">About</a>
-                </div>
-            </div>
-        </div>
-        <div class="account-popup-container">
-            <!-- Icon essentially acts as a clickable icon with the javascript DOM manipulation -->
-            <div id="account-clickable-icon" class="account-clickable-icon">
-                <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
-            </div>
-            <div id="account-popup" class="account-popup">
-                <ul>
-                    <li>
-                        <a id="go-to-account"  class="" href="/account">Account</a>
-                    </li>
-                    <li>
-                        <!-- Settings page not existing yet -->
-                        <a id="go-to-settings" class="" href="/home">Settings</a>
-                    </li>
-                    <li>
-                        <a id="sign-out" class="" href="/">Sign Out</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <div class="translucent-form-overlay">
-        <div class="container">
-            <div class="feed" id="post-list">
-                <div class="post">
-                    <img src="avatar1.jpg" class="avatar" alt="Avatar of John Doe">
-                    <div class="content">
-                        <div class="author">John Doe</div>
-                        <div class="date">December 4, 2023</div>
-                        <div class="text">Today I went to the park with my dog and we had a lot of fun. He loves to chase the squirrels and play fetch with his favorite ball. Here is a picture of him enjoying the sun.</div>
-                        <img src="image1.jpg" class="image" alt="Image of a dog in the park">
+    <div class="content-pane d-flex flex-column">
+        <nav id="navbar" class="header navbar navbar-expand-lg fixed-top" style="justify-content: space-between; flex-grow: 0;">
+            <div class="left-side-header d-flex flex-row align-items-center ">
+                <img src="boot.png" width="40" height="40" class="d-inline-block align-top boot-img" alt="">
+                    <div class="tabs tab-margins d-flex flex-row justify-content-between align-items-stretch" style="text-decoration: none;">
+                        <a id='home-link' class="home-link" href="/home">Home</a>
+                        <a id='feed-link' class="feed-link" href="/feed">Feed</a>
+                        <a id='about-us-link'class="about-us-link" href="/about-us">About</a>
                     </div>
+            </div>
+            <div class="account-popup-container">
+                <!-- Icon essentially acts as a clickable icon with the javascript DOM manipulation -->
+                <div id="account-clickable-icon" class="account-clickable-icon">
+                    <img src="pfp.png" width="40" height="40" alt="" class="rounded-circle profile-icon" >
                 </div>
-                <div class="post">
-                    <img src="avatar2.jpg" class="avatar" alt="Avatar of Jane Smith">
-                    <div class="content">
-                        <div class="author">Jane Smith</div>
-                        <div class="date">December 3, 2023</div>
-                        <div class="text">I just finished reading a great book called "The Art of Happiness". It's written by a psychologist and a Buddhist monk and it explores the ways to achieve happiness in life. I learned a lot from it and I highly recommend it to anyone who is looking for some inspiration and guidance.</div>
+                <div id="account-popup" class="account-popup">
+                    <ul>
+                        <li>
+                            <a id="go-to-account"  class="" href="/account">Account</a>
+                        </li>
+                        <li>
+                            <!-- Settings page not existing yet -->
+                            <a id="go-to-settings" class="" href="/home">Settings</a>
+                        </li>
+                        <li>
+                            <a id="sign-out" class="" href="/">Sign Out</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="translucent-form-overlay">
+            <div class="container">
+                <div class="feed" id="post-list">
+                    <div class="post">
+                        <img src="avatar1.jpg" class="avatar" alt="Avatar Picture">
+                        <div class="content">
+                            <div class="author">John Doe</div>
+                            <div class="text">Today I went to the park with my dog and we had a lot of fun. He loves to chase the squirrels and play fetch with his favorite ball. Here is a picture of him enjoying the sun.</div>
+                            <img src="image1.jpg" class="image" alt="Image of a dog in the park">
+                        </div>
                     </div>
-                </div>
-                <div class="post">
-                    <img src="avatar3.jpg" class="avatar" alt="Avatar of Bob Lee">
-                    <div class="content">
-                        <div class="author">Bob Lee</div>
-                        <div class="date">December 2, 2023</div>
-                        <div class="text">I just got back from a trip to New York City and it was amazing. I saw the Statue of Liberty, the Empire State Building, the Central Park, and many other famous landmarks. I also enjoyed the food, the culture, and the nightlife. It was a memorable experience and I can't wait to go back.</div>
-                        <img src="image2.jpg" class="image" alt="Image of New York City skyline">
+                    <div class="post">
+                        <img src="avatar2.jpg" class="avatar" alt="Avatar of Jane Smith">
+                        <div class="content">
+                            <div class="author">Jane Smith</div>
+                            <div class="date">December 3, 2023</div>
+                            <div class="text">I just finished reading a great book called "The Art of Happiness". It's written by a psychologist and a Buddhist monk and it explores the ways to achieve happiness in life. I learned a lot from it and I highly recommend it to anyone who is looking for some inspiration and guidance.</div>
+                        </div>
+                    </div>
+                    <div class="post">
+                        <img src="avatar3.jpg" class="avatar" alt="Avatar of Bob Lee">
+                        <div class="content">
+                            <div class="author">Bob Lee</div>
+                            <div class="date">December 2, 2023</div>
+                            <div class="text">I just got back from a trip to New York City and it was amazing. I saw the Statue of Liberty, the Empire State Building, the Central Park, and many other famous landmarks. I also enjoyed the food, the culture, and the nightlife. It was a memorable experience and I can't wait to go back.</div>
+                            <img src="image2.jpg" class="image" alt="Image of New York City skyline">
+                        </div>
                     </div>
                 </div>
             </div>
