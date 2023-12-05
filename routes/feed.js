@@ -11,16 +11,18 @@ router.get('/', (req, res) => {
 });
 
 router.post('/load-feed', (req, res) => {
-    let user = req.session.userEmail
-    results = []
-    DBHelper.QueryDB('Entries', 'text', {}, (textResults) => {
-      for (let i = 0; i < textResults.length; i++){
-        results.push(textResults[i])
-      }
-      res.send(results)
-    });
-      
-  
+  let user = req.session.userEmail
+  results = []
+  DBHelper.QueryDB('Entries', 'text', {}, async (textResults) => {
+    for (let i = 0; i < textResults.length; i++){
+      await DBHelper.QueryDB('Entries', 'images', {entryId : textResults[i]._id.toString()}, (imageResults) => {
+        results.push({text: textResults[i], image: imageResults[0]})
+      });
+    }
+    res.send(results)
   });
+    
+
+});
 
 module.exports = router;

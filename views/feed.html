@@ -22,7 +22,7 @@
                 console.log(responseJSON)
                 element.innerHTML = ''
                 for(let i = 0; i < responseJSON.length; i++){
-                    let entryComponent = '<div class="post"> <img src="avatar1.jpg" class="avatar" alt="Avatar Picture"> <div class="content"><div class="author">' + responseJSON[i].user + '</div> <div class="text">' + responseJSON[i].Description + '</div> <img src="image1.jpg" class="image" alt="Image not found"> </div> </div>'
+                    let entryComponent = '<div class="post"> <img src="pfp.png" class="avatar" alt="Avatar Picture"> <div class="content"><div class="author">' + responseJSON[i].text.user + '</div> <div class="text">' + responseJSON[i].text.Description + '</div> <img src="data:image/png;base64,'+ responseJSON[i].image.data + '" class="image" alt="Image not found"> </div> </div>'
                     element.innerHTML += entryComponent
                 }
                 
