@@ -11,6 +11,8 @@ body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 /* adjustable content pane to hold the page contents */
@@ -20,6 +22,7 @@ body{
     height: 100%;
     flex-wrap: nowrap;
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 /* Header just holds the title and tabs */
@@ -198,8 +201,9 @@ body {
     position: relative;
     background-color: rgba(0,0,0,0.6);
     width: 100%;
-    height: 100%;
-    padding-top: 30px;
+    height: auto;
+    margin-top: 54.67;
+    overflow-y: auto;
 }
 
 .container {
@@ -295,3 +299,9 @@ body {
 .modal-content {
     background-color: rgba(255, 255, 255, 0.8);
 }
+
+@media only screen and (max-width: 1253px) {
+    .translucent-form-overlay {
+      height: auto;
+    }
+  }
