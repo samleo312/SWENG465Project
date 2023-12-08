@@ -31,7 +31,36 @@
         document.addEventListener('DOMContentLoaded', (event) => { 
             document.getElementById('post-list').innerHTML = '';
             loadEntries(document.getElementById('post-list'));
-        })
+            
+            const accountIconClick = document.getElementById('account-clickable-icon');
+            const accountPopup = document.getElementById('account-popup');
+            const signOutButton = document.getElementById('sign-out');
+    
+            // Toggle account menu visibility
+            accountIconClick.addEventListener('click', () => {
+                if (accountPopup.classList.contains('open')) {
+                    accountPopup.classList.remove('open'); 
+                } else {
+                    accountPopup.classList.add('open');
+                }
+                // also close when scrolling
+                document.addEventListener('scroll', (event) =>{
+                    if (accountPopup.classList.contains('open')) {
+                        accountPopup.classList.remove('open');
+                    }
+                });
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!accountIconClick.contains(event.target) && !accountPopup.contains(event.target)) {
+                    if (accountPopup.classList.contains('open')) { 
+                        accountPopup.classList.remove('open');
+                    }
+                }
+            });
+        });
+
+
 
     </script>
 </head>
