@@ -31,16 +31,6 @@
                 
             }
 
-            async function logOut() {
-                const response = await fetch('/home/log-out', {
-                        method: 'POST',
-                        headers:{
-                            'Content-Type': 'application/json'
-                        },
-                        body: '',
-                });
-            }
-
             function viewEntry(imageData, title, description, whatHappened){
                 $('#view-entry-modal').modal('toggle')
                 modalTitle= document.getElementById('view-entry-modal-title')
@@ -99,11 +89,6 @@
                 // Toggle Add Entry Modal
                 stickyButton.addEventListener('click', () => {
                     $('#add-entry-modal').modal('toggle')
-                });
-                
-                // Sign Out button handler
-                signOutButton.addEventListener('click', () => {
-                    logOut();
                 });
 
                 // Close the menus when clicking outside
